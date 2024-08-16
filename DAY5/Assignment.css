@@ -1,0 +1,33 @@
+#heading{
+   color:blue;
+}
+body{
+ margin:0;
+ padding:0;
+ align-items: center;
+ justify-content: center;
+}
+h3{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+body p{
+ background-color: black;
+ color:cornflowerblue;
+}
+div button{
+  background-color:purple;
+  color:azure;
+}
+div button:hover{
+   background-color: yellow;
+   color:blue;
+}
+p:nth-of-type(2n){
+  background-color: chartreuse;
+}
+h1::first-letter{
+    color:red;
+}
+#yes:checked+label{
+ color:darkgreen;
+}
