@@ -64,5 +64,23 @@ input[type="password"]{
   font-size:15px;
 }
 div[id="myId"] p{
-  color:rgb(255, 0, 183)
-;}
+  color:rgb(255, 0, 183);
+}
+#login:hover{
+  background-color: black;
+  color:white;
+}
+#login:active{
+  background-color: pink;
+}
+.upvote:hover{
+  background-color: #ff0400;
+}
+.answer:active{
+  background-color: rgb(214, 8, 114);
+}
+input[type="radio"]:checked + label{
+  color:#ff0400;
+  font-weight: bolder;
+
+}

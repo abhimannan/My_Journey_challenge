@@ -1,0 +1,21 @@
+div{
+ background-color: aqua;
+}
+form{
+ background-color: yellow;
+
+}
+form>label{
+  background-color: red;
+}
+/* form>input{
+   background-color: black;
+   color:aqua;
+} */
+button{
+ background-color: inherit;
+
+}
+input{/* to make it as inheritate the properties */
+ background-color: inherit;
+}
