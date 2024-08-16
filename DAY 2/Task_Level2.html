@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>LEVEL2</title>
+</head>
+<body>
+ 
+<h1>The sky is cloudy &#x2601; &amp; it will rain &#9748; today.;</h1>
+<video controls width="300px" height="250px">
+ <source src="C:\Users\SNEHA\Desktop\photoes\VID20231123153846.mp4">
+</video>
+<br>
+<audio controls>
+ <source src="C:\Users\SNEHA\Desktop\MUSIC\வசீகரா_பாடல்வரிகள்___மின்னலே___ஹாரிஸ்_ஜயராஜ்___மாதவன்___ரீமா_சென்___தாமரை(48k).mp3">
+</audio><br><hr>
+<h2>Today is date is : <span id="date"></span> </h2>
+<script>
+ let date=new Date();
+ let month=date.getMonth();
+ let year=date.getFullYear();
+ let d=date.getDate();
+ document.getElementById("date").innerHTML=`${d} ${month} ${year}`;
+</script>
+</body>
+</html>

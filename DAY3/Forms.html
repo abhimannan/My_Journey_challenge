@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Forms</title>
+</head>
+<body>
+    
+ <form action="/action">
+     <label for="name">Name :</label>
+     <input type="text" id="name" placeholder="Enter Name"><br>
+     <label for="age">Age :</label>
+     <input type="number" id="age" placeholder="Enter Age"><br>
+     <label for="Date">DOB :</label>
+     <input type="dob" id="Date" placeholder="Birth Date"><br>
+     <label for="mail">Mail :</label>
+     <input type="email" id="mail" placeholder="Enter Email"><br>
+     <label for="password">Password :</label>
+     <input type="number" id="password" placeholder="Enter Password"><br>
+     <label for="time">Time :</label>
+     <input type="Time" id="time"><br>
+     <label for="Color">Color :</label>
+     <input type="color" id="Color" placeholder="Choose Color"><br>
+     <input type="radio" name="male" checked>Male
+     <input type="radio" name="female" unchecked>Female<br>
+     <textarea rows="5" cols="20" placeholder="Leave The Comment"></textarea><br>
+     <select>
+        <option>-----</option>
+        <option>HTML</option>
+        <option>CSS</option>
+        <option>JAVASCRIPT</option>
+     </select><br>
+     <input type="file" accept="file"><br><br>
+     <input type="button" value="Submit">
+  <br>
+  <hr>
+  <br>
+ </form>
+ <form action="/action">
+    <input type="checkbox" name="age" id="age" checked>
+  <label for="age">AGE</label>
+  <button type="submit">Submit</button>
+ </form>
+ <form action="/action">
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label>
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">Other</label><br>
+        <button type="submit">Click</button>
+        <div>
+            <select name="profession" is="select">
+                 <option value="student" selected>Student</option>
+                 <option value="dev">Developer</option>
+            </select>
+        </div>
+        <div>
+            <label for="audio">Set Volume</label>
+            <input type="range" id="audio" name="c" min="0" max="100" step="10">
+
+        </div>
+ </form>
+</body>
+</html>
