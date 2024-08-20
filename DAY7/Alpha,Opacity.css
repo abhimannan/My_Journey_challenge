@@ -1,0 +1,15 @@
+div{
+ height:100px;
+ width:100px;
+ background-color: #ff000066;
+ transition:background-color 1s ease-in 0.2s;
+}
+div:hover{
+   border-radius:50%;
+   background-color: aqua;
+   
+}
+
+.opacity{
+  opacity:0.5;
+}
