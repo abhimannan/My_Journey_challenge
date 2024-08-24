@@ -1,0 +1,45 @@
+@keyframes fontanimation{
+ from {
+  font-size:20px;
+ }
+ to {
+  font-size:40px;
+  color:red
+ }
+
+}
+.animation-container{
+  width:150px;
+  height:100px;
+  background-color: aqua;
+  /* Animation working process */
+  /* animation-name: fontanimation;
+  animation-duration: 2s;
+  animation-timing-function: ease-in;
+  animation-delay: 0s;
+  animation-direction:alternate;
+  animation-iteration-count: 3; */
+  /* short hand */
+  animation:fontanimation 3s ease-in 0s alternate 3; 
+}
+
+@keyframes colorchange{
+   0% {
+    background-color: red;
+   }
+   50%{
+    background-color: aqura;
+   }
+   100%{
+    background-color: black;
+    border-radius:50%;
+   }
+} 
+.backcolorchange{
+   width:200px;
+   height:200px;
+   background-color: blanchedalmond;
+   animation:colorchange 2s ease-in-out 0s infinite alternate;
+   
+   
+}
