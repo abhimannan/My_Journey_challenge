@@ -71,6 +71,48 @@ body{
 .below-header{
      display:flex;
      justify-content:space-evenly;
-     background-color: #111715;
+     
      border-radius:5px;
+     color:white;
+
 }
+.below-header:hover{
+    color:black;
+}
+.carousel-inner{
+     width:100%;
+     height:300px;
+     
+
+}
+.procucts-container{
+     width:100%;
+     height:2000px;
+     background-color:rgb(205, 202, 202);
+     align-items: center;
+}
+.box{
+    display:flex;
+    flex-direction: column;
+    padding:10px;
+    border:2.5px solid #141414;
+    display:inline-flex;
+    border-radius:10px;
+    gap:5px;
+    background-color: white;
+    height:350px;
+    width:250px;
+    justify-content: center;
+    flex-direction: baseline;
+
+}
+.image{
+    width:200px;
+    height:300px;
+    border-radius:10px;
+    border:1px solid black;
+}
+.box a{
+    text-decoration: none;
+}
+
