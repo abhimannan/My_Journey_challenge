@@ -5,19 +5,23 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title>Amazon</title>
  <link rel="stylesheet" href="Amazon.css">
+ <!-- bootstrap link -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
  <div class="container">
-   <header>
+   <header class="header">
     <div class="amazon-logo">
       <img src="https://logos-world.net/wp-content/uploads/2020/04/Amazon-Logo.png" alt="Amazon-Logo" width="125pz" height="65px">
      </div>
+
     <div class="update-location">
        <p>Delivery To Hydrabad 500009</p>
        <h4>Update-Location</h4>
     </div>
     <div class="search-field">
-       <select value="All">
+       <select value="All" class="category">
           <option>All</option>
           <option>All Category</option>
           <option>Alexa Skills</option>
@@ -56,10 +60,12 @@
           <option>Under $20</option>
           <option>Watches</option>
        </select>
-       <input type="text" /><br>
-       <button class="search-btn">search-Logo</button>
+       <input placeholder="Search" class="search-input" type="text" />
+       <button class="search-btn">⌕</button>
+    </div>
        <div>
            <select class="Language">
+            <option>---Language---</option>
               <option>Tamil</option>
               <option>Telugu</option>
               <option>Hindi</option>
@@ -90,15 +96,156 @@
            <button>Login</button>
          </div>
          <div class="shoping-logo">
-            <img src="https://th.bing.com/th/id/OIP.sno0CcEyldJOprPGhwrVZwHaHa?w=189&h=189&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="shop-image" width="50px" height="50px">
-
+            <img class="cart" src="https://th.bing.com/th/id/OIP.8sDFaA40mUZi2plCArYVXgHaHw?w=164&h=180&c=7&r=0&o=5&pid=1.7" alt="shop-image" width="50px" height="50px">
          </div>
+      </div>
+<!-- header completed -->
+ </header>
+ 
+<div class="below-header">
+      <button class="btn">≣ All</button>
+      <button class="btn">Amazon miniTV</button>
+      <button class="btn">Sell</button>
+      <button class="btn">Best Sellers</button>
+      <button class="btn">Today's Deals</button>
+      <button class="btn">Mobiles</button>
+      <button class="btn">Customer Services</button>
+      <button class="btn">Prime</button>
+      <button class="btn">Electronics</button>
+      <button class="btn">Fashion</button>
+      <button class="btn">New Release</button>
+      <button class="btn">Cars</button>
+      <button class="btn">Mens</button>
+      <button class="btn">Womens</button>
+      <button class="btn">Fashions</button>
+</div>
 
+<!-- caroal -->
+<div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
+   <div class="carousel-inner">
+     <div class="carousel-item active" id="iamge1">
+       <img src="https://th.bing.com/th/id/OIP.9HTB8yeWOLXYY7KrLXRRDQHaEJ?w=266&h=180&c=7&r=0&o=5&pid=1.7" class="d-block w-100" alt="image1">
+     </div>
+     <div class="carousel-item">
+       <img src="https://i.postimg.cc/3wRNHZ8F/box4-image.jpg" class="d-block w-100" alt="...">
+     </div>
+     <div class="carousel-item">
+       <img src="https://i.postimg.cc/zvp45TXT/box6-image.jpg" class="d-block w-100" alt="...">
+     </div>
+   </div>
+   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
+     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+     <span class="visually-hidden">Previous</span>
+   </button>
+   <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
+     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+     <span class="visually-hidden">Next</span>
+   </button>
+ </div>
+
+ <div class="procucts-container">
+      <div class="box">
+         <h1>Beauty Pics</h1>
+         <img class="image" src="https://th.bing.com/th/id/OIP._iuP5LuZ1k6ULRbGEEMCWgHaEK?w=322&h=181&c=7&r=0&o=5&pid=1.7" alt="beauty"><br>
+         <a href="">See More</a>
+      </div>
+      <div class="box">
+         <h1>Fashions</h1>
+         <img class="image" src="https://th.bing.com/th?q=Simple+Clothes&w=120&h=120&c=1&rs=1&qlt=90&cb=1&pid=InlineBlock&mkt=en-IN&cc=IN&setlang=en&adlt=moderate&t=1&mw=247" alt="beauty"><br>
+         <a href="">See More</a>
       </div>
 
- </header>
+      <div class="box">
+         <h1>Towels</h1>
+         <img class="image" src="https://th.bing.com/th/id/OIP.dpEl4OXgD4lp2F3VeX45hgHaHa?w=168&h=180&c=7&r=0&o=5&pid=1.7" alt="beauty"><br>
+         <a href="">See More</a>
+      </div>
+
+      <div class="box">
+         <h1>Watches</h1>
+         <img class="image" src="https://th.bing.com/th/id/OIP.hlhC0L07E6Zfiek0L_kcAAHaFj?rs=1&pid=ImgDetMain" alt="beauty"><br>
+         <a href="">See More</a>
+      </div>
+
+      <div class="box">
+         <h1>Laptops</h1>
+         <img class="image" src="https://www.techwelike.com/wp-content/uploads/2015/05/HP-ENVY-Touchsmart-Laptop-at-Best-Buy-AMDFX-Front-Analie-Cruz.jpg" alt="beauty"><br>
+         <a href="">See More</a>
+      </div>
+
+      <div class="box">
+         <h1>Accessors</h1>
+         <img class="image" src="https://th.bing.com/th/id/OIP.RIfxJJLAkPL90FeIRa-hBQHaHa?w=171&h=180&c=7&r=0&o=5&pid=1.7" alt="beauty"><br>
+         <a href="">See More</a>
+      </div>
+
+      <div class="box">
+         <h1>Furnitures</h1>
+         <img class="image" src="https://4.bp.blogspot.com/-Z6Z2qoFvpMw/UMIaBVxZgdI/AAAAAAAAbKI/E9-ms_s9CCE/s1600/Beautiful+modern+sofa+furniture+designs.+(2).jpg" alt="beauty"><br>
+         <a href="">See More</a>
+      </div>
+
+      <div class="box">
+         <h1>Medicines</h1>
+         <img class="image" src="https://static.vecteezy.com/system/resources/previews/010/810/331/original/medicine-pharmacy-hospital-set-of-medicines-with-labels-the-concept-of-medical-subjects-illustration-in-cartoon-style-vector.jpg" alt="beauty"><br>
+         <a href="">See More</a>
+      </div>
+
+      <div class="box">
+         <h1>Shop School Supplies</h1>
+         <img class="image" src="https://th.bing.com/th/id/OIP.eUgyR5fR2GACiIhaFwZUDgAAAA?w=474&h=316&rs=1&pid=ImgDetMain" alt="beauty"><br>
+         <a href="">See More</a>
+      </div>
+
+      <div class="box">
+         <h1>Toys</h1>
+         <img class="image" src="https://th.bing.com/th/id/OIP.ZdQe3mtR0atNMEzwUfED9AHaGK?rs=1&pid=ImgDetMain" alt="beauty"><br>
+         <a href="">See More</a>
+      </div>
 
 
-   </div>
+<div class="bike">
+    <h1>Top Sellers in Books for You</h1>
+    <div class="books">
+       <img src="https://th.bing.com/th/id/R.a89d0e816aed127ea6feb321119fb112?rik=5cL58EUxH8nm6Q&riu=http%3a%2f%2fwww.roguefour.co.uk%2fwp-content%2fuploads%2f2019%2f05%2fEducationAndNewTech_PB_3D.jpg&ehk=3lMEh%2bvHzaKMhYZGo2h%2ftzwBAe4nK4UYqVPfw4yBloQ%3d&risl=&pid=ImgRaw&r=0" alt="book1" />
+      <img src="https://i.pinimg.com/originals/1e/26/1b/1e261b4a0b19a07b7db28383e5078a4c.jpg" alt="book2" />
+      <img src="https://i.etsystatic.com/18862601/r/il/e8f350/3076726782/il_fullxfull.3076726782_299f.jpg" alt="book3" />
+       <img src="https://i.imgur.com/Oj1iQUX.webp" alt="book4" />
+      <img src="https://th.bing.com/th/id/OIP.beYKj8WCOn6NJ4pNqq_-ZAHaHa?&rs=1&pid=ImgDetMain" alt="book5" />
+      <img src="https://i1.wp.com/www.incrementa.ca/wp-content/uploads/2019/07/atomichabits.jpg?fit=1707%2C1974&ssl=1" alt="book6" />
+       <img src="https://th.bing.com/th/id/OIP.0063zf6OXwHwfC08Q1EoAwHaHa?w=2400&h=2400&rs=1&pid=ImgDetMain" alt="book7" />
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h2>About Us</h2>
+            <p>We are an e-commerce platform offering a wide range of products including electronics, fashion, and groceries. Our mission is to provide the best shopping experience.</p>
+        </div>
+        <div class="footer-section links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class="footer-section contact">
+            <h2>Contact Us</h2>
+            <p>Email: support@amazonclone.com</p>
+            <p>Phone: +1 234 567 890</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Amazon Clone. All rights reserved.</p>
+    </div>
+</footer>
+
+</div>
+</div>
 </body>
 </html>
