@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="icon" href="./asserts/logo.png">
+ <title>Spotify - Web Player:Music For Everyone</title>
+ <link rel="stylesheet" href="index.css">
+  <!-- Bootstrap link -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+  <div class="main">
+    <div class="side-bar">
+       <div class="home-search-container">
+        <div class="nav-option">
+           <i class="fa fa-home"></i>
+           <a href="#">Home</a>
+        </div>
+        <div class="nav-option">
+         <i class="fa fa-search" aria-hidden="true"></i>
+         <a href="#">Search</a>
+      </div>
+    </div>
+      <!-- Library Part -->
+      <div class="library-container">
+         <div class="nav-of-library">
+            <img src="./asserts/library_icon.png" width="20px" height="20px">
+             <h4>Your Library</h4>
+             <h3>+</h3>
+             <img src="./asserts/forward_icon.png">
+         </div>
+               <div class="create-playlist">
+                  <h4>Create Your First Playlist</h4>
+                  <p>It's Easy,We'll Help You</p>
+                  <button>Create Playlist</button>
+               </div>
+               <div class="create-playlist">
+                  <h4>Let's Find Some Podcasts To Follow</h4>
+                  <p>We'll Keep You Updated On New Episodes</p>
+                  <button>Browse Podcasts</button>
+               </div>
+       </div>
+       <!-- end of library section -->
+   </div>
+ <!-- End Of The Side-bar -->
+    <div class="main-content">
+          <div class="main-navs">
+            <div class="array-btns">
+               <img src="./asserts/backward_icon.png">
+               <img src="./asserts/forward_icon.png">
+             </div>  
+            <div class="nav-buttons">
+               <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button class="btn btn-outline-light me-md-2" type="button">Explore Premium</button>
+                  <button class="btn btn-outline-light" type="button">Install App</button>
+                  <img width="40px" height="40px" src="https://cdn-icons-png.flaticon.com/128/9068/9068651.png"> 
+                  <img class="bell" src="./asserts/icons8-bell-64.png">
+               </div>            
+            </div>        
+          </div>
+       <div class="btns3">
+           <button>All</button>
+           <button>Music</button>
+           <button>Podcasts</button>
+       </div>
+       <hr>
+       
+       <div class="recently-card">
+         <h2>Recently Played</h2>
+         <div class="card" style="width: 12.5rem;height: 17rem;">
+            <img width="100px" height="125px" class="card-img-top" src="./asserts/card1img.jpeg" alt="Card image cap">
+            <div class="card-body"> 
+              <h4 class="card-title">Top 50 - Global</h4>
+              <p class="card-text">Your Daily Update Of The Most Played Tracks Right...</p>
+            </div>
+          </div>
+         
+       </div><br><br><br> <br><br><br>
+        <h3>Shows To Try...</h3>
+        <div class="show-container">
+               <div class="shows-try">
+                     <img class="shows" width="200px" height="200px" src="https://img.freepik.com/premium-psd/music-party-banner-design-template_987701-3024.jpg?size=626&ext=jpg&ga=GA1.1.1039381751.1720520877&semt=ais_hybrid">
+                     <h4>Top Event</h4>
+                     <p>Robert  Davit</p>
+               </div>
+               <div class="shows-try">
+                  <img class="shows" width="200px" height="200px" src="https://thelifehype.com/wp-content/uploads/2020/05/chota-bheem-popular-Indian-shows-among-kids.jpg">
+                  <h4>Chota Bheem</h4>
+                  <p>No.1 Cartoon</p>
+               </div>
+               <div class="shows-try">
+                  <img class="shows" width="200px" height="200px" src="https://www.stupidgag.com/wp-content/uploads/2020/11/mirzapur-web-series-1024x577.jpg">
+                  <h4>61 Indian</h4>
+                  <p>Rasika Dugal</p>
+               </div>
+               <div class="shows-try">
+                  <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.jExeslv5FmO-S8VyWwZ3iAAAAA?rs=1&pid=ImgDetMain">
+                  <h4>Taylore Swift</h4>
+                  <p>Toylore solo</p>
+               </div>
+               <div class="shows-try">
+                  <img class="shows" width="200px" height="200px" src="https://upload.wikimedia.org/wikipedia/en/9/9f/Bohemian_Rhapsody.png">
+                  <h4>Bohemian Rhapsody</h4>
+                  <p> A Night at the Opera (1975)</p>
+               </div>
+      </div>
+      <br>
+      <h2>To Get You Started</h2>
+      <br>
+      <div class="card-row-2">
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://upload.wikimedia.org/wikipedia/en/4/49/Hotelcalifornia.jpg">
+            <h4>Hotel California"</h4>
+            <p>Hotel California (1976)</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.wrgPKCQ_JE_ex20xoOi97AHaEK?rs=1&pid=ImgDetMain">
+            <h4>Shape of You</h4>
+            <p>÷ (2017)</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.6bEMLy5_uXjFqwNTzLX22QHaJc?rs=1&pid=ImgDetMain">
+            <h4>Billie Jean</h4>
+            <p>Thriller (1982)</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.o9A22FDuVlB74qPIZfX3RgHaHa?rs=1&pid=ImgDetMain">
+            <h4>Blinding Lights</h4>
+            <p> After Hours (2019)</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.YcUnlm7mvWKzeH8UgATqVQHaHa?rs=1&pid=ImgDetMain">
+            <h4>Rolling in the Deep</h4>
+            <p>21 (2010)</p>
+          </div>
+      </div><br>
+      <h2>Tollywood Hits</h2>
+      <br>
+      <div class="card-row-2">
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.haWW8J7FRCSrsvcGwumtygHaFj?rs=1&pid=ImgDetMain">
+           <h4>Butta Bomma</h4>
+           <p>Ala Vaikunthapurramuloo (2020)</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://www.cinejosh.com/newsimg/newsmainimg/samajavaragamana-song-teaser-review_b_3112191116.jpg">
+           <h4>Samajavaragamana</h4>
+           <p>Ala Vaikunthapurramuloo (2020)</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://i.ytimg.com/vi/B7wKBO5L7Q4/maxresdefault.jpg">
+           <h4>Pilla Raa</h4>
+           <p>RX 100 (2018)</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://i.ytimg.com/vi/RDkwWsWZn7I/maxresdefault.jpg">
+           <h4>Enna Solla Pogirai</h4>
+           <p>Kandukondain Kandukondain (2000)</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://i.ytimg.com/vi/nKUADQyr3xQ/maxresdefault.jpg">
+           <h4>Nijame Cheppamantu</h4>
+           <p> Businessman (2012)</p>
+         </div>
+         <div class="start-with">
+          <img class="shows" width="200px" height="200px" src="https://movies.universalpictures.com/media/02-ysd-dm-mobile-banner-1080x745-rr-f01-021119-5c63549ee1cd8-1.jpg">
+          <h4>Nijame Cheppamantu</h4>
+          <p> Help! (1965)</p>
+        </div>
+        <div class="start-with">
+          <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.kA6rec73lm52gROayEyt0gHaHW?rs=1&pid=ImgDetMain">
+          <h4>Sweet Child O' Mine</h4>
+          <p>Appetite for Destruction (1987)</p>
+        </div>
+     </div><br>
+     <h2>To Get You Started</h2>
+      <br>
+      <div class="card-row-2">
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.IMpuPvv4WkHIJYel9-U6RgHaEK?rs=1&pid=ImgDetMain">
+            <h4>Munbe Vaa</h4>
+            <p>Sillunu Oru Kaadhal (2006)</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.tJ_xmf8iKO1ldazWCJy2lAHaFI?rs=1&pid=ImgDetMain">
+            <h4>Rowdy Baby</h4>
+            <p>Maari 2 (2018)</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://hinditracks.co.in/wp-content/uploads/2023/03/Why-This-Kolaveri-Di-Lyrics-1024x576.jpg">
+            <h4>Why This Kolaveri Di</h4>
+            <p>3 (2012)</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://images.hindustantimes.com/rf/image_size_630x354/HT/p2/2017/08/10/Pictures/_f93161f8-7dbe-11e7-b5e3-d817f67cfdf5.jpeg">
+            <h4>Aalaporaan Thamizhan</h4>
+            <p>Mersal (2017)</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://i.ytimg.com/vi/ItnX0rARax8/maxresdefault.jpg">
+            <h4>Kaadhal Rojave</h4>
+            <p> Roja (1992)</p>
+          </div>
+      </div><br>
+      <h2>Featured Charts</h2>
+      <br>
+      <div class="card-row-2">
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.-bXlFNEPQ_UsQjsE5XnwDAHaEK?rs=1&pid=ImgDetMain">
+           <h4>Stick Season</h4>
+           <p>Stick Season</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.wC_dqjS3834HJaaoaVviSgHaEK?rs=1&pid=ImgDetMain">
+           <h4>Lose Control</h4>
+           <p>Lose Control</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.V8-L3JG2ctdC1R6aS-ZYyQHaEK?rs=1&pid=ImgDetMain">
+           <h4>Beautiful Things</h4>
+           <p>Beautiful Things</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.zTVRzHwAD747X_BWammy3QHaHa?rs=1&pid=ImgDetMain">
+           <h4>Texas Hold 'Em</h4>
+           <p>Texas Hold 'Em</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://wallpapercave.com/wp/5evylV8.jpg">
+           <h4>Vampire</h4>
+           <p>Guts</p>
+         </div>
+     </div><br>
+     <h2>Melody Hits...</h2>
+      <br>
+      <div class="card-row-2">
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://www.filmibeat.com/img/2014/03/06-simbu-trisha.jpg">
+            <h4>Aaromale</h4>
+            <p>Vinnaithaandi Varuvaayaa</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://i.ytimg.com/vi/8M3LTA4oo7s/maxresdefault.jpg">
+            <h4>Ennavale Adi Ennavale</h4>
+            <p>Kadhalan</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://www.nowrunning.com/content/movie/0-2007/Jillendru%20Oru%20Kadhal/bg-video45202094523.jpg">
+            <h4>Munbe Vaa</h4>
+            <p>Sillunu Oru Kaadhal</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.9eGMB9Ph-wUxu28KAnw5ZAHaFe?rs=1&pid=ImgDetMain">
+            <h4>Vaseegara</h4>
+            <p> Minnale</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://i.ytimg.com/vi/Vw0ptOQb2l8/maxresdefault.jpg">
+            <h4>Moongil Thottam</h4>
+            <p>Kadal</p>
+          </div>
+      </div><br>
+      <h2>Fresh New Music</h2>
+      <br>
+      <div class="card-row-2">
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://tamilpatal.com/wp-content/uploads/2019/06/Aathi-Lyrics.jpg">
+           <h4>Aathikkathi</h4>
+           <p>G.V. Prakash</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://media.salemwebnetwork.com/cms/CW/38472-morning-mandisa.1200w.tn.png">
+           <h4>Maanidaa</h4>
+           <p>Kalki by A.R. Rahman</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/0e/11/5b/0e115b68-a4f0-f48d-8526-6bbca0205e95/1941570339093.jpg/1200x1200bf-60.jpg">
+           <h4>Solla Solla</h4>
+           <p>A.R. Rahman</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://i.ytimg.com/vi/YofSj-9AVbE/maxresdefault.jpg">
+           <h4>Bhaama</h4>
+           <p> Anirudh Ravichander</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://i.ytimg.com/vi/5YZiVFDlT84/maxresdefault.jpg">
+           <h4>Kehne Ko Toh</h4>
+           <p>Vijay Deverakonda</p>
+         </div>
+     </div><br>
+     <h2>Gana Songs</h2>
+      <br>
+      <div class="card-row-2">
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://i.ytimg.com/vi/AyMwuRJ1VvI/maxresdefault.jpg">
+            <h4>Gana Kanna</h4>
+            <p>Gana Babu</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://i.ytimg.com/vi/iHQigluQVNo/maxresdefault.jpg">
+            <h4>Gana Raasai</h4>
+            <p>Gana Ulaganathan</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://i.ytimg.com/vi/mLDwwHfJGHs/hqdefault.jpg">
+            <h4>Gana Rani</h4>
+            <p>Gana Muthu</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://timesofindia.indiatimes.com/photo/msid-78515875,imgsize-181451.cms">
+            <h4>Gana Kadhai</h4>
+            <p>Gana Ulaganathan</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://i.ytimg.com/vi/lv9_8zc5X1E/maxresdefault.jpg">
+            <h4>Gana Vala</h4>
+            <p>Gana Babu</p>
+          </div>
+      </div><br>
+      <h2>Mood</h2>
+      <br>
+      <div class="card-row-2">
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/R.52a67872c2388a96e50c3cfdcff4ef4e?rik=pCvEcuseVVBaew&riu=http%3a%2f%2f2.bp.blogspot.com%2f-9TGKqADKXWc%2fT2S7JhzvM_I%2fAAAAAAAABb4%2fJGVrBGCOs3Q%2fs1600%2fmunni1.jpg&ehk=GtySanQ8wpIrlrs8fjlT7lylab%2b6oNFiY%2f%2bixg%2fbtxE%3d&risl=&pid=ImgRaw&r=0">
+           <h4>Munni Badnaam Hui</h4>
+           <p>Dabangg (2010)</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/R.cd69733e61505d5863f7e34f88efab1b?rik=ZwsaMKCMNKjJpg&riu=http%3a%2f%2f1.bp.blogspot.com%2f-yeaPjTCNRzM%2fTh-n-HEkbzI%2fAAAAAAAABwI%2f7W4vy8Obm9s%2fs1600%2fsexy-Katrina-Kaif-sheila-ki-jawani-Pics-and-Wallpapers-Or-Photos%2b%2525281%252529.jpg&ehk=WqcafFZMm2tYC2t%2bX2kS3z4UvrQ%2bLpBl6gTSJd%2fC9Wo%3d&risl=&pid=ImgRaw&r=0">
+           <h4>Sheila Ki Jawani</h4>
+           <p>Tees Maar Khan (2010)</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/2-adele-design-juangs-shop.jpg">
+           <h4>Fevicol Se</h4>
+           <p>Dabangg 2 (2012)</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/R.037739184859e45b48dbb9f3a63e2898?rik=ryO3kfA8mE8k5Q&riu=http%3a%2f%2f4.bp.blogspot.com%2f-QYn-jtDbh3M%2fTw5zGYAmixI%2fAAAAAAAAAEM%2fBGQa-rFWlKg%2fs1600%2fchikni_chameli_wallpaper.JPG&ehk=gIa5WBiSqaOCDeXuWkN0CwwkCHbY6mBC1GZcII2SMgE%3d&risl=&pid=ImgRaw&r=0d">
+           <h4>Chikni Chameli</h4>
+           <p>Agneepath (2012)</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://i.ytimg.com/vi/cq7Msh5HmxM/maxresdefault.jpg">
+           <h4>Genda Phool</h4>
+           <p>Delhi-6 (2009)</p>
+         </div>
+     </div><br>
+     <h2>Most Favorite Songs</h2>
+      <br>
+      <div class="card-row-2">
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.n1PiVYS4x1TuzPWYkNwHLwHaHa?w=185&h=185&c=7&r=0&o=5&dpr=1.4&pid=1.7">
+            <h4>Bohemian Rhapsody</h4>
+            <p> Queen</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.sh4pOTk0Wwsyyv7kMrImyAHaHa?rs=1&pid=ImgDetMain">
+            <h4>Imagine</h4>
+            <p>John Lennon</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://i.ytimg.com/vi/pkH4SqNILsg/maxresdefault.jpg">
+            <h4>Shape of You</h4>
+            <p> Ed Sheeran</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://img.freepik.com/premium-psd/music-party-banner-design-template_987701-3024.jpg?size=626&ext=jpg&ga=GA1.1.1039381751.1720520877&semt=ais_hybrid">
+            <h4>Blinding Lights</h4>
+            <p>The Weeknd</p>
+          </div>
+          <div class="start-with">
+            <img class="shows" width="200px" height="200px" src="https://img.freepik.com/premium-psd/music-party-banner-design-template_987701-3024.jpg?size=626&ext=jpg&ga=GA1.1.1039381751.1720520877&semt=ais_hybrid">
+            <h4>Someone Like You</h4>
+            <p>Adele</p>
+          </div>
+      </div><br>
+      <p>Playlists full of favorites, still going strong.</p>
+      <h2>Throwback</h2>
+      <br>
+      <div class="card-row-2">
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.BEhkLr6BkH28OPnJ-upiMAHaEK?w=327&h=184&c=7&r=0&o=5&dpr=1.4&pid=1.7">
+           <h4>Tum Hi Ho</h4>
+           <p>Robert  Davit</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.eaepK4T83CimMvOuMlDEOAAAAA?rs=1&pid=ImgDetMain">
+           <h4>Aashiqui 2</h4>
+           <p>Arijit Singh (Aashiqui 2)</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP._5aFqRpysSPFUG9_j7e2EAHaEK?rs=1&pid=ImgDetMain">
+           <h4>Tera Ban Jaunga</h4>
+           <p>Akhil & Tulsi Kumar</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://th.bing.com/th/id/OIP.TLy43qYWBoE363aDnIGKvgAAAA?rs=1&pid=ImgDetMain">
+           <h4>Kabira</h4>
+           <p> Arijit Singh</p>
+         </div>
+         <div class="start-with">
+           <img class="shows" width="200px" height="200px" src="https://i.ytimg.com/vi/hc40CFK7D2g/hqdefault.jpg">
+           <h4>Pee Loon</h4>
+           <p> Mohit Chauhan</p>
+         </div>
+     </div>
+     <br>
+     <hr>
+     <br>
+     <div class="footer">
+         <div class="div1">
+            <h4><a style="text-decoration: none;" href="#">Company</a></h4>
+            <a href="">About</a>
+            <a href="">Jobs</a>
+            <a href="">For The Record</a>
+         </div>
+         <div class="div1">
+          <h4><a style="text-decoration: none;" href="#">Communities</a></h4>
+          <a href="">For Artists</a>
+          <a href="">Developers</a>
+          <a href="">Advertising</a>
+          <a href="">Investors</a>
+          <a href="">Vendors</a>
+       </div>
+       <div class="div1">
+        <h4><a style="text-decoration: none;" href="#">Userful Links</a></h4>
+        <a href="">Supports</a>
+        <a href="">Free Mobile App</a>
+     </div>
+     <div class="div1">
+      <h4><a style="text-decoration: none;" href="#">Spotify Plans</a></h4>
+      <a href="">Premium Individuals</a>
+      <a href="">Premium duo</a>
+      <a href="">premium Family</a>
+      <a href="">premium Student</a>
+      <a href="">Spotify Free</a>
+   </div>
+   <div class="social-media-links">
+      <img src="https://img.icons8.com/?size=50&id=32292&format=png">
+      <img src="https://img.icons8.com/?size=50&id=9R1sV3QvY18K&format=png">
+      <img src="https://img.icons8.com/?size=50&id=16712&format=png">
+   </div>
+     </div>
+     <br>
+     <hr>
+     <br>
+     <div class="last-of-main">
+          <button>Legal</button>
+          <button>Safety & Privacy Center</button>
+          <button>Privacy Policy</button>
+          <button>Cookies</button>
+          <button>About Ads</button>
+          <button>Accessibility</button>
+          <button>about</button>
+     </div><br><br>
+     <h4 class="copy">&copy;2024 Spotify Abhi...</h4>
+     <br>
+     <br>
+     <hr>
+     <br>
+     <br>
+     <br>
+    </div>
+   
+    <div class="music-player">
+          <div class="left-of-music">
+              <img width="50px" height="60px" src="https://th.bing.com/th/id/OIP.bP9tjMnV6cqe9Ru5S0F3tQHaHa?rs=1&pid=ImgDetMain">
+              <div class="details">
+                  <h5>Para</h5>
+                  <p>HRISHI,Aromal Chekav...</p>
+              </div>
+              <img class="add" width="40px" height="40px" src="https://img.icons8.com/?size=80&id=68546&format=png">
+          </div>
+
+          <div class="center-of-music">
+                <div class="music-controls">
+                    <img class="same-size" src="./asserts/player_icon1.png">
+                    <img class="same-size" src="./asserts/player_icon2.png">
+                    <img class="different-size" src="./asserts/player_icon3.png">
+                    <img class="same-size" src="./asserts/player_icon4.png">
+                    <img class="same-size" src="./asserts/player_icon5.png">
+                </div>
+                <div class="music-tracker">
+                  <span>00:00</span>
+                  <input class="music-play" type="range" min="0" max="100">
+                  <span>3:33</span>
+
+                </div>
+          </div>
+
+          <div class="right-of-music">
+              <img class="icons" src="https://img.icons8.com/?size=80&id=78059&format=png">
+              <img class="icons" src="https://img.icons8.com/?size=50&id=EHtxO8ZmA602&format=png">
+              <img class="icons" src="https://img.icons8.com/?size=50&id=58565&format=png">
+              <img class="icons" src="https://img.icons8.com/?size=50&id=41562&format=png">
+              <input type="range" min="0" max="100">
+              <img class="icons" src="https://img.icons8.com/?size=80&id=1AF4chh6jhdv&format=png">
+              <img class="icons" src="https://img.icons8.com/?size=50&id=38033&format=png">
+          </div>
+    </div>
+
+   </div>
+</body>
+</html>
