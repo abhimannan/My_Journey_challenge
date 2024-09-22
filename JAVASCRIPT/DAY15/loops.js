@@ -60,11 +60,12 @@ console.log("After datatype changes n is :",typeof(n));
 // }
 
 // Favorite Movie
-let favorite_movie="Avatar";
-while(favorite_movie){
-  let input_movie=prompt("Enter movie :");
-  if(favorite_movie==input_movie){
-   console.log("Correct movie"); 
-   break;
-  }
-}
+// let favorite_movie="Avatar";
+// while(favorite_movie){
+//   let input_movie=prompt("Enter movie :");
+//   if(favorite_movie==input_movie){
+//    console.log("Correct movie"); 
+//    break;
+//   }
+// }
+
