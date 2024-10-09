@@ -1,10 +1,8 @@
 let sum=10;  // it is the global scope
-
 function fun_scope(){
    let sum=45;// function scope
    console.log(sum);
   }
-
   fun_scope();
 console.log(sum);
 

@@ -19,10 +19,10 @@ console.log(t);
 
 // Array Methods
 // forEach(callback); It excecute each of the array elements
-let arr=[10,20,30,40,50];
-arr.forEach((data)=>{
-     console.log(data);
-    });
+// let arr=[10,20,30,40,50];
+// arr.forEach((data)=>{
+//      console.log(data);
+//     });
 
 let students={
      marks:[10,20,50,45],
@@ -140,4 +140,88 @@ let total=marks.reduce((pre,next)=>{
      return pre+next;
 });
 console.log(total);
+
+// arrr.every(callback);
+// it returns every true if every element satisfys the condition
+// else it return false
+// every is works like an AND operator
+let e=[2,4,6,9];
+let i=e.every((data)=>{ // AND
+     return data%2==0;
+});
+console.log(i);
+
+// "some" is similar to the "every" but the differece is
+// "some" is works like an "OR" operator
+
+let some=[1,2,3,4];
+let s=some.some((data)=>{ // OR
+     return data%4==0;
+});
+console.log(s);
+
+// reduce(accumilator,element);
+let sample_array=[1,2,3];
+let v=salary_array.reduce((pre,next)=>{
+      return pre+next;
+});
+console.log(`Sum = ${v}`);
+
+// maximum element in an array
+let arr_elements=[1,,3,4,5];
+let max=-1;
+for(let i=0;i<arr_elements.length;i++){
+   if(arr_elements[i]>max){
+     max=arr_elements[i];
+   }
+   console.log(max);
+
+}
+
+// reduce(a,el);
+// let m=arr_elements.reduce((result,el)=>{
+//   let max=-1;  
+//   if(result>max){
+//      max=el;
+//   }
+//   return max;
+// });
+// console.log(m);
+let o=[2,1,5,-5];
+let min=o.reduce((min,ele)=>{
+    if(min<ele){
+         return min;
+    }
+    else{
+       return ele;
+    }
+});
+console.log(min);
+
+// check all the array elements are multiples of 10 ot not
+let arr_mul=[10,20,30];
+let res=arr_mul.every((data)=>{
+   return data%10==0;
+});
+console.log(res);
+
+// check in an array if anyone of the elment is multiples of both 2 and 10
+let heights=[1,2,15,3];
+let minimum=heights.reduce((res,ele)=>{
+  if(res>ele){
+     return ele;
+
+   }
+    return ele;
+
+});
+console.log(minimum);
+
+
+
+
+
+
+
+
 

@@ -1,8 +1,8 @@
 // // Output in js
-// console.log("Abhi Mannan");
+console.log("Abhi Mannan");
 // // User Input
-// let name=window.prompt("Enter Your Name:");
-// console.log(name);
+let namex=window.prompt("Enter Your Name:");
+console.log(namex);
 
 // Variables : Which stores value
 let val1=10;
@@ -36,7 +36,7 @@ let student = {
 }
 console.log(typeof(marks));
 
-// Operators
+// Operators :
 // arithematic,comparision,logical
 // bitwise,assignment,unary operators
 
