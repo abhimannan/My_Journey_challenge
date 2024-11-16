@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>singlepost.ejs</title>
+</head>
+<body>
+    <form action="http://localhost:2024/posts" method="post"> 
+      <h1>Post Details</h1>
+      <h2>id = <%= id_data.id %></h2>
+       <h2>Name = <%= id_data.name %></h2>
+       <h3>Content = <%= id_data.content %></h3>
+       <button type="submit">Back</button>
+     </form>
+</body>
+</html>
