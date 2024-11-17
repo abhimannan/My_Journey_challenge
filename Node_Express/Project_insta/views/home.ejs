@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Instagram Home Page</title>
+ <link rel="stylesheet" href="/home.css">
+</head>
+<body>
+    <!-- header -->
+    <header>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Explore</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="insta">
+        <h1>Welcome To Instagram</h1>
+        <button class="create"><a href="http://localhost:2323/home/new">Create Post</a></button>
+    </div>
+    <% for(let profile of data){ %>
+        <div class="profile">
+              <img src="<%= profile.img_src %>" alt="image">
+              <h2>Name : <%= profile.name %></h2>
+              <h3>About : <%= profile.about %></h3>
+              <button><a href="http://localhost:2323/home/view/<%= profile.id %>">View</a></button>
+              <button><a href="http://localhost:2323/home/edit/<%= profile.id %>">Edit</a></button>
+              <!-- Delete -->
+                <form method="POST" action="http://localhost:2323/home/<%= profile.id %>?_method=DELETE">
+                    <button type="submit">Delete</button>
+                </form>
+        </div>
+    <%}%>
+    
+   <!-- footer    -->
+   <footer>
+    <p>&copy; 2024 Instagram. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

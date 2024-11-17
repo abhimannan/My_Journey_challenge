@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
+ <link rel="stylesheet" href="/edit.css">
+</head>
+<body>
+    <h1>Edit Your Here</h1>
+    <form method="POST" action="/home/<%= post.id %>?_method=PATCH">
+        <h3>Change URL Of The Image</h3>
+        <input value="<%= post.img_src %>" type="text" name="img_src"><br>
+        <h3>Change Your Name</h3>
+        <input value="<%= post.name %>" type="text" name="name"><br>
+        <h3>Change About</h3>
+        <textarea name="about"><%= post.about %></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

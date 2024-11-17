@@ -1,0 +1,97 @@
+/* General Body Styles */
+body {
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ background-color: #fafafa; /* Soft background color */
+ margin: 0;
+ padding: 0;
+ display: flex;
+ flex-direction: column; /* Stack content vertically */
+ align-items: center;
+ gap: 20px; /* Add spacing between elements */
+}
+
+/* Heading Styles */
+h1 {
+ font-size: 2.5rem;
+ color: #2c3e50;
+ margin: 20px 0; /* Add spacing above and below */
+ font-weight: bold;
+ text-align: center;
+}
+
+/* Post Form Container */
+.post {
+ background-color: #ffffff; /* White background for the form */
+ padding: 40px;
+ border-radius: 12px;
+ box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+ width: 100%;
+ max-width: 600px; /* Form width limit */
+}
+
+/* Input Fields */
+input, textarea {
+ width: 100%;
+ padding: 14px;
+ margin-bottom: 20px;
+ border: 1px solid #ddd; /* Light grey border */
+ border-radius: 8px;
+ font-size: 1.5rem;
+ color: #333;
+ background-color: #f9f9f9; /* Light grey background */
+}
+
+input[type="text"]:focus, textarea:focus {
+ border-color: #3498db; /* Blue border on focus */
+ outline: none;
+ background-color: #fff; /* White background on focus */
+}
+
+/* Textarea Styling */
+textarea {
+ height: 160px; /* Increased height for textarea */
+ resize: vertical; /* Allow vertical resizing */
+}
+
+/* Submit Button Styling */
+button {
+ background-color: #2ecc71; /* Green background */
+ color: white;
+ border: none;
+ border-radius: 8px;
+ padding: 14px 22px;
+ cursor: pointer;
+ font-size: 1.2rem;
+ width: 100%;
+ transition: background-color 0.3s ease;
+}
+
+button:hover {
+ background-color: #27ae60; /* Darker green on hover */
+}
+
+/* Form Button Focus Styling */
+button:focus {
+ outline: none;
+ box-shadow: 0 0 5px rgba(46, 204, 113, 0.6); /* Green glow effect on focus */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+ .post {
+     padding: 25px;
+     width: 85%; /* More space on smaller screens */
+ }
+
+ h1 {
+     font-size: 1.8rem;
+ }
+
+ input, textarea {
+     padding: 12px; /* Slightly smaller padding on smaller screens */
+ }
+
+ button {
+     padding: 12px 20px; /* Adjust button size for mobile */
+ }
+}

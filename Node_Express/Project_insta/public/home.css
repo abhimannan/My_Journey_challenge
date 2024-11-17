@@ -1,0 +1,182 @@
+/* General Styles */
+.insta{
+  display:grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 50px;
+}
+.insta h1{
+  margin-left:250px;
+}
+.create{
+ margin-left:0px;
+   width:150px;
+   height:50px;
+   display:grid;
+   align-items: center;
+  
+}
+body {
+ font-family: Arial, sans-serif;
+ background-color: #ebcdcd;
+ margin: 0;
+ padding: 0;
+ text-align: center;
+ color: #333;
+}
+
+h1 {
+ margin: 20px 0;
+ font-size: 2.5rem;
+ color: #262626;
+}
+
+/* Profile Card Styles */
+.profile {
+ display: inline-block;
+ background-color: #fff;
+ border: 1px solid #dbdbdb;
+ border-radius: 10px;
+ margin: 15px;
+ padding: 20px;
+ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+ width: 300px;
+ text-align: left;
+}
+
+.profile img {
+ width: 100%;
+ height: 200px;
+ object-fit: cover;
+ border-radius: 10px;
+}
+
+.profile h2, 
+.profile h3 {
+ margin: 10px 0;
+}
+
+.profile button {
+ display: inline-block;
+ background-color: #3897f0;
+ color: white;
+ border: none;
+ border-radius: 5px;
+ padding: 10px 20px;
+ cursor: pointer;
+ font-size: 1rem;
+ margin: 5px 0;
+}
+
+.profile button a {
+ text-decoration: none;
+ color: white;
+}
+
+.profile button:hover {
+ background-color: #287dcf;
+}
+
+/* Form Styles */
+form {
+ display: inline-block;
+}
+
+form button {
+ background-color: #d9534f;
+ color: white;
+ border: none;
+ border-radius: 5px;
+ padding: 10px 20px;
+ cursor: pointer;
+ font-size: 1rem;
+}
+
+form button:hover {
+ background-color: #c9302c;
+}
+
+/* Create Post Button */
+button a {
+ text-decoration: none;
+ color: white;
+}
+
+button {
+ margin-top: 20px;
+ background-color: #4caf50;
+ color: white;
+ border: none;
+ border-radius: 5px;
+ padding: 10px 20px;
+ cursor: pointer;
+ font-size: 1rem;
+}
+
+button:hover {
+ background-color: #45a049;
+}
+
+/* Alternative Header Styles */
+header {
+ background-color: #262626; /* Dark background */
+ padding: 15px 30px; /* Increased padding for more space */
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ width: 100%; /* Full width */
+ box-sizing: border-box; /* Include padding in width */
+ position: sticky;
+ top: 0;
+ z-index: 1000;
+ color: white; /* White text */
+}
+
+header .logo {
+ font-size: 2rem; /* Larger font size */
+ font-weight: bold;
+ color: #fff; /* White text for logo */
+ letter-spacing: 2px; /* Spacing between letters */
+}
+
+header .nav-links {
+ list-style: none;
+ margin: 0;
+ padding: 0;
+ display: flex;
+ gap: 30px; /* Larger space between links */
+}
+
+header .nav-links li {
+ display: inline;
+}
+
+header .nav-links a {
+ text-decoration: none;
+ color: #fff; /* White text */
+ font-weight: 600; /* Slightly bolder font weight */
+ text-transform: uppercase; /* Uppercase text */
+ font-size: 1.1rem; /* Slightly larger font size */
+ transition: color 0.3s ease; /* Smooth transition on hover */
+}
+
+header .nav-links a:hover {
+ color: #3897f0; /* Hover color changes to Instagram blue */
+ text-decoration: underline; /* Underline on hover */
+}
+
+/* Footer Styles */
+footer {
+ background-color: #fff;
+ border-top: 1px solid #dbdbdb;
+ padding: 10px 20px;
+ text-align: center;
+ position: relative;
+ bottom: 0;
+ width: 100%;
+}
+
+footer p {
+ margin: 0;
+ color: #888;
+ font-size: 1.5rem;
+}
