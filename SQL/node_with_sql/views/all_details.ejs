@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>All Data</title>
+ <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+ <h1>All Data</h1>
+ <div class="details">
+    
+     <% for(let datas of data) { %>
+            <h3>User Id : <%= datas[0] %></h3>
+            <h3>Username : <%= datas[1] %></h3>
+            <h3>E-mail : <%= datas[2] %></h3>
+            <button><a href="http://localhost:9090/users/<%= datas[0] %>">Show</a></button>
+            <button><a href="http://localhost:9090/users/edit/<%= datas[0] %>">Edit Your Post Here</a></button>
+            <form method="post" action="http://localhost:9090/delete/<%= datas[0] %>?_method=DELETE">
+              <button type="submit">Delete Post</button>
+            </form>
+            <% } %>
+     <button><a href="http://localhost:9090/new">Create Post</a></button>
+ </div>
+</body>
+</html>
