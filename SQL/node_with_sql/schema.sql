@@ -17,3 +17,10 @@ pass_word varchar(40)
 -- create table products(id int,name varchar(30));
 select * from user;
 -- show tables;
+create table user2(
+id int primary key,
+username varchar(30),
+email varchar(30),
+pass_word varchar(40)
+);
+select * from user2;

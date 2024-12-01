@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
+ <link rel="stylesheet" href="/users.css">
+</head>
+<body>
+    <h1>Users Details</h1>
+    <div class="users-details">
+       <div class="user">
+           <% for(let i of data){ %>
+            <div class="single-user">
+                <h2><%= i.id %></h2>
+                <h2><%= i.name %></h2>
+                <a href="http://localhost:5050/users/<%= i.id %>"><button>Show</button></a>
+                <button>Edit</button>
+                <button>Delete</button>
+            </div>
+           <% } %>
+       </div>
+    </div>
+</body>
+</html>
+for(let i of data){
+ console.log(i.id);
+ console.log(i.name);
+}
