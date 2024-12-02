@@ -15,7 +15,7 @@
                 <h2><%= i.id %></h2>
                 <h2><%= i.name %></h2>
                 <a href="http://localhost:5050/users/<%= i.id %>"><button>Show</button></a>
-                <button>Edit</button>
+                <a href="http://localhost:5050/users/edit/<%= i.id %>"><button>Edit</button></a>
                 <button>Delete</button>
             </div>
            <% } %>

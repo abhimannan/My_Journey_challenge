@@ -7,7 +7,7 @@
 </head>
 <body>
  <h1>Success</h1>
-    <form method="POST" action="http://localhost:5050/users/<%= single_post.id %>?_method=PATCH">
+    <form method="post" action="http://localhost:5050/users/post/<%= single_post.id %>?_method=PATCH">
          <h1>id : <%= single_post.id %></h1>
          <input type="text" name="name" value="<%= single_post.name %>">
          <button type="submit">Change</button>

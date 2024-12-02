@@ -270,18 +270,22 @@ app.get("/users/edit/:id",(req,resp)=>{
          console.log(err);
       } 
 });
-app.post("/users/:id",(req,resp)=>{
+app.patch("/users/post/:id",(req,resp)=>{
    try{
       let {id}=req.params;
       let q=`select * from employes where id=?`;
       connection.query(
           q,[id],(err,results)=>{   // query,data,()=>{-----}
              if(err) throw err;
-             let new_name=req.body.name;
-             results[0].name=new_name;
+             let {name}=req.body;
+             let q2=`UPDATE EMPLOYES set name='${name}' where id='${id}'`;
+             connection.query(q2,(err,results)=>{
+                if(err) throw err;
+                console.log(results);
+             })
              resp.redirect("/users");
           }
-      );
+      );    
       }
       catch(err){
          console.log(err);
