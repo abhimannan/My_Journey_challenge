@@ -16,14 +16,13 @@
                 <h2><%= i.name %></h2>
                 <a href="http://localhost:5050/users/<%= i.id %>"><button>Show</button></a>
                 <a href="http://localhost:5050/users/edit/<%= i.id %>"><button>Edit</button></a>
-                <button>Delete</button>
+                <form method="POST" action="/users/<%= i.id %>?_method=DELETE">
+                    <button type="submit">Delete</button>
+                </form>
             </div>
            <% } %>
        </div>
+       <a href="http://localhost:5050/add"><button>Create New Post</button></a>
     </div>
 </body>
 </html>
-for(let i of data){
- console.log(i.id);
- console.log(i.name);
-}

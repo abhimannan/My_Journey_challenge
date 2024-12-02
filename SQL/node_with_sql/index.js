@@ -291,6 +291,44 @@ app.patch("/users/post/:id",(req,resp)=>{
          console.log(err);
       } 
 });
+// add
+// add data route
+app.get("/add",(req,resp)=>{
+   var uuid = require('uuid-v4');
+   let new_id=uuid();
+   resp.render("add.ejs",{new_id});
+});
+app.post("/users/new",(req,resp)=>{
+    let {id,name}=req.body;
+   //  let arr=[id,name];// for reference
+   try{
+      const query = 'INSERT INTO employes (id, name) VALUES (?, ?)';
+      connection.query(
+         query,[id,name],(err,results)=>{  
+             if(err) throw err;
+             console.log(`successfully inserted ${results}`);
+             resp.redirect("/users");
+          } 
+      );
+      }
+      catch(err){
+         console.log(err);
+      }
+});
+app.delete("/users/:id",(req,resp)=>{
+   let {id}=req.params;
+   let delete_query=`delete from employes where id='${id}'`;
+   try{
+      connection.query(delete_query,(err,results)=>{
+          if(err) throw err;
+          console.log(results);
+          resp.redirect("/users");
+      });
+   }
+   catch(e){
+      console.log(e);
+   }
+})
 // let data=[["abhi","geetha","vijay","kumar"]];
 // app.get("/home/about",(req,resp)=>{
 //    resp.render("all_details.ejs",{data});
