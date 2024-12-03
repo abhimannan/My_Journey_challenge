@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Users</title>
+ <link rel="stylesheet" href="/users.css">
+</head>
+<body>
+<div class="head"> 
+     <div class="basic">
+          <h1>Users Details</h1>
+          <h2>No. of Users : <%= results.length %></h2>
+     </div>
+     <div class="create-data">
+         <button><a href="http://localhost:2020/users/new">Create New Data</a></button>
+     </div>
+</div> 
+  <table>
+     <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>EMAIL ADDRESS</th>
+        <th colspan="3">Tasks</th>
+     </tr>
+     <% for(let user of results){ %>
+     <tr>
+      <td><%= user.id %></td>
+      <td><%= user.username %></td>
+      <td><%= user.eamil %></td>
+      <td><button><a href="http://localhost:2020/users/show/<%= user.id %>">Show</a></button></td>
+      <td><button><a href="http://localhost:2020/users/edit/<%= user.id %>">Edit</a></button></td>
+      <form method="POST" action="/users/delete/<%= user.id %>?_method=DELETE">
+          <td><button type="submit">Delete</button></td>
+      </form>
+   </tr>  
+   <% } %>
+  </table>
+</body>
+</html>

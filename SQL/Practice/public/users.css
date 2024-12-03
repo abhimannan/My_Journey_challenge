@@ -1,0 +1,19 @@
+table{
+  border:5px solid red;
+
+}
+tr,td,th{
+  border: 2px double black;
+}
+td{
+  padding:15px;
+}
+.head{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+}
+.create-data{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
