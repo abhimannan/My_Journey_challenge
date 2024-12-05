@@ -145,7 +145,7 @@ app.post("/users/add",(req,resp)=>{
     connection.query(q,[id,name,email,password],(err,results)=>{
        if(err) throw err;
        resp.redirect("http://localhost:2020/users");
-    });
+    }); 
    }
    catch(e){
        console.log(e);
