@@ -1,0 +1,19 @@
+body{
+  margin-left:15px;
+}
+.all-data{
+   background-color: rgb(159, 228, 205);
+   border-radius:15px;
+  padding:10px;
+  display: inline-block;
+}
+.message{
+  background-color: blue;
+  color:white;
+  margin-left:10px;
+  border-radius:10px;
+  
+}
+.message p{
+ padding:7PX 7PX;
+}

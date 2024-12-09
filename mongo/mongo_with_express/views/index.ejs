@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Show Route</title>
+ <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+ <h1>All Chats...</h1>
+ <button><a href="http://localhost:8080/new">Create</a></button>
+ 
+  <div class="container">
+   <% for(let chat of chats){ %>
+     <div class="all-data">
+      <h1><%= chat._id %></h1>
+          <p>From :<%= chat.from %><p>
+         <DIV class="message"> 
+             <p>Message : <%= chat.message %> </p>
+          </DIV>
+           <p>To : <%=chat.to%></p>
+           <a href="http://localhost:8080/show/<%= chat._id %>"><button>Show</button></a>
+         <a href="http://localhost:8080/edit/<%= chat._id %>"><button>Edit</button></a>
+         <form method="POST" action="/delete/<%= chat._id %>?_method=DELETE">
+             <button type="submit">Delete</button>
+        </form>
+     </div>
+     <hr>
+  <% } %>
+ </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Edit Here</title>
+</head>
+<body>
+ <h1>Edit Your Message Here!</h1>
+ <form method="POST" action="/modify/<%= res._id %>?_method=PATCH">
+      <input type="text" name="from" value="<%= res.from %>">
+      <textarea name="message" rows="10" cols="25"><%= res.message %></textarea>
+      <input type="text" name="to" value="<%= res.to %>">
+      <button type="submit">Submit</button>
+ </form>
+</body>
+</html>
