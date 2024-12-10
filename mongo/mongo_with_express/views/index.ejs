@@ -13,7 +13,6 @@
   <div class="container">
    <% for(let chat of chats){ %>
      <div class="all-data">
-      <h1><%= chat._id %></h1>
           <p>From :<%= chat.from %><p>
          <DIV class="message"> 
              <p>Message : <%= chat.message %> </p>
@@ -24,6 +23,9 @@
          <form method="POST" action="/delete/<%= chat._id %>?_method=DELETE">
              <button type="submit">Delete</button>
         </form>
+        <hr>
+        <p><%= chat.sent_at.toString().split(" ")[4] %></p>
+        <p><%= chat.sent_at.toString().split(" ").slice(1,4).join(" - ") %></p>
      </div>
      <hr>
   <% } %>

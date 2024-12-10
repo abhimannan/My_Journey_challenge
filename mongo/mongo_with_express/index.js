@@ -52,7 +52,8 @@ app.post("/post",(req,resp)=>{
    let n1=new Chat({
      from:from,
      message:message,
-     to:to
+     to:to,
+     sent_at:new Date()
    });
    n1.save().then((res)=>{
      console.log(`Message was sent!`);
@@ -84,7 +85,7 @@ app.get("/edit/:id",(req,resp)=>{
 app.patch("/modify/:id",(req,resp)=>{
   let {id}=req.params;
    let {from,message,to}=req.body;
-   Chat.updateMany({_id:id},{
+   Chat.updateMany({_id:id},{runValidator:true,new:true},{
      from:from,
      message:message,
      to:to
