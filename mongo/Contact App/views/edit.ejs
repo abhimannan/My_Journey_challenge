@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Edit</title>
+</head>
+<body>
+ <h1>Edit Your Post Here...</h1>
+ <form method="POST" action="/edit/data/<%= res._id %>?_method=PATCH">
+   Name: <input value="<%= res.name %>" type="text" name="name" placeholder="Enter Name"><br>
+   <textarea value="<%= res.phone_no %>" type="number" name="phone_no" cols="25" rows="15">Enter Phone Number</textarea><br>
+   Email : <input value="<%= res.email %>" type="text" name="email" placeholder="Enter Email">
+   <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

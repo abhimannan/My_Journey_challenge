@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>All Contacts</title>
+ <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+ <div class="container"></div>
+ <div class="new-contact">
+   <button type="submit"><a href="http://localhost:1414/new">Add New Contact</a></button>
+ </div>
+   <% for(let i of res){ %>
+       <div class="contact-details"> 
+        <p><%= i._id %></p> 
+             <p>Name: <%= i.name %></p>
+             <p>Phone No. :<%= i.phone_no %></p>
+             <p>Email : <%= i.email %></p>
+             <button><a href="http://localhost:1414/show/<%= i._id %>">Show</a></button>
+             <button><a href="http://localhost:1414/edit/<%= i._id %>">Edit</a></button>
+             <form method="POST" action="/delele/<%= i._id %>?_method=DELETE">
+                 <button type="submit">Delete</button>
+            </form>
+       </div>
+   <% } %>
+</div> 
+</body>
+</html>

@@ -1,0 +1,54 @@
+/* General Body and Layout */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container styling */
+.container {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Contact Details Box */
+.contact-details {
+  background-color: #e9e9e9;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.contact-details p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Heading Styling */
+h1 {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+
+  .contact-details {
+    padding: 10px;
+  }
+
+  .contact-details p {
+    font-size: 14px;
+  }
+}
