@@ -1,0 +1,204 @@
+body {
+   font-family: Arial, sans-serif;
+   background-color: #f8f9fa;
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+}
+.boilar-container {
+    flex:1;
+}
+
+.navbar{
+   height:5rem;
+   background-color: aliceblue;
+}
+.fa-compass{
+   font-size:2.5rem;
+   color:#ff0000
+}
+.navbar-nav{
+   gap:10px;
+   font-size:1.3rem;
+}
+.nav-link{
+   color:black !important;
+}
+footer{
+   display:grid;
+   grid-template-rows: 1.1fr 1fr 1.1fr;
+   text-decoration: none !important;
+   gap:10px;
+   background-color: bisque;
+}
+.f-info-socials,.company,.f-info-links{
+   display:flex; 
+   justify-content: center; 
+    
+}
+.f-info-socials {
+    display:flex;
+    gap:35px;
+    font-size:2rem;
+}
+.f-info-links{
+    font-size: 1.3rem;
+    display:flex;
+    gap:15px;
+}
+.company{
+    font-size: 1.4rem;
+    text-decoration: none;
+}
+/* css code for listings.ejs */
+
+ 
+ /* Container for the cards */
+ .container-body {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   gap: 20px;
+   padding: 20px;
+ }
+ 
+ /* Card container */
+ .card-container {
+   text-decoration: none;
+   color: black;
+ }
+ 
+ /* Card styles */
+ .card {
+   border: 1px solid #ddd;
+   border-radius: 10px;
+   overflow: hidden;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   transition: transform 0.3s, box-shadow 0.3s;
+   background-color: #fff;
+   text-decoration: none; /* Remove underline */
+ }
+ 
+ .card:hover {
+   transform: translateY(-5px);
+   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+ }
+ 
+ /* Card image */
+ .card-img-top {
+   width: 100%;
+   height: auto;
+   display: block;
+   object-fit: cover;
+ }
+ 
+ /* Card overlay */
+ .card-img-overlay {
+   position: absolute;
+   display: flex;
+   justify-content: flex-end;
+   align-items: flex-start;
+   color: #ed0909;
+   font-size: 40px;
+   font-weight: bold;
+   background: rgba(0, 0, 0, 0.3);
+   opacity: 0;
+   transition: opacity 0.3s;
+ }
+ 
+ .card:hover .card-img-overlay {
+   opacity: 1;
+ }
+ 
+ /* Card body */
+ .card-body {
+   display:flex;
+   flex-direction: column;
+   gap:5px;
+   padding: 15px;
+   text-transform:capitalize;
+   text-decoration: none;
+ }
+ 
+ .card-body p {
+   margin: 0;
+   font-size: 16px;
+   text-decoration: none; /* Remove underline */
+ }
+ 
+ .card-body p {
+   font-size: 18px;
+   text-decoration: none !important; /* Remove underline */
+ }
+ 
+ /* Button styles */
+ button a {
+   display: inline-block;
+   text-decoration: none; /* Remove underline */
+   color: white;
+   background-color: #007bff;
+   padding: 10px 15px;
+   border-radius: 5px;
+   font-size: 16px;
+   transition: background-color 0.3s;
+ }
+ 
+ button a:hover {
+   background-color: #0056b3;
+ }
+ 
+ button {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 20px auto;
+   border: none;
+   background: none;
+ }
+.card-text {
+   font-size: 20px !important;
+   font-weight: bolder;
+}
+.price{
+    font-weight: bold;
+}
+/* New Page css Code */
+.form-control {
+   border-color:chartreuse;
+   padding:5px;
+   font-size: 1.2rem;
+}
+.form-label{
+    font-size:1.4rem;
+}
+.form-head{
+   color:rgb(0, 0, 255);
+}
+.btn-dark {
+    background-color: #ff0000;
+    color:white;
+    border:none;
+    padding: 10px;
+}
+/* Edit css Code */
+
+
+
+
+
+/* Show Route */
+.show-img {
+   height: 40vh;
+   width:100%;
+}
+.card-style {
+   padding: 50px;
+}
+.delete-btn {
+   background-color: #080d0e;
+   padding:8px;
+   border-radius:5px;
+   color:white;
+   width:80px;
+
+}

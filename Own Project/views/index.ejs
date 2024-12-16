@@ -1,0 +1,14 @@
+<% layout('./layout/biolarplate.ejs') -%>
+<body>
+   <% for(let book of data){ %>
+      <a href="/index/show/<%= book._id %>">
+      <div class="card" style="width: 18rem;">
+      <img src="<%= book.image_url %>" class="card-img-top" alt="Book Image">
+      <div class="card-body">
+        <p><%= book.title %></p>
+        <p>@ <%= book.price %></p>
+      </div>
+    </div>
+    </a>
+<% } %>
+</body>

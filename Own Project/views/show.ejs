@@ -1,0 +1,17 @@
+<% layout('./layout/biolarplate.ejs') -%>
+<body>
+ <div class="container">
+  <h2>Book Details</h2>
+    <div class="show">
+       <p><%= res.title %></p><br>
+       <p><%= res.author %></p><br>
+       <p><%= res.book_type %></p><br>
+       <p><%= res.price %></p><br>
+       <img src="<%= res.image_url %>">
+    </div>
+    <a href="/index/edit/<%= res._id %>"><button>Edit</button></a>
+    <form method="POST" action="/delete/<%= res._id %>?_method=DELETE">
+      <button type="submit">Delete Book Details</button>
+    </form>
+ </div>
+</body>

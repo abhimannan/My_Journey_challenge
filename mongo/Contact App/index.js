@@ -102,8 +102,6 @@ app.post("/new/contact",(req,resp)=>{
    });
    resp.redirect("/index");
 });
-
-
 app.listen(port,()=>{
   console.log(`Server is Running in Port No. ${port}`);
 })

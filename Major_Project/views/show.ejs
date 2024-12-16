@@ -1,0 +1,24 @@
+<% layout('/layouts/biolerplate') %>
+<div class="row">
+   <div class="col-8 offset-2">
+  <br>
+<div class="card card-style mb-3">
+  <h2>Hotel Details</h2><br>
+  <img src="<%= res.image.url %>" class="card-img-top show-img" alt="Image">
+  <div class="card-body">
+    <h5 class="card-title"><b><%= res.title %></b></h5>
+    <p class="card-text"><large class="text-body"><%= res.description %></large></p>
+    <p class="card-text"><large class="text-body">&#8377; <%= res.price.toLocaleString("en-IN") %></large></p>
+    <p class="card-text"><large class="text-body"><%= res.location %></large></p>
+    <p class="card-text"><large class="text-body"><%= res.country %></large></p>
+   <br>
+   <div>
+    <button class="edit-btn"><a href="/edit/<%= res._id %>">Edit</a></button>
+    <form method="POST" action="/delete/<%= res._id %>?_method=DELETE">
+      <button class="delete-btn" type="submit">Delete</button>
+    </form>
+  </div>  
+  </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,42 @@
+<% layout('/layouts/biolerplate.ejs') %>
+<body>
+   <div class="edit-control">
+   <div class="row mt-3">
+      <div class="col-8 offset-2">
+         <br>
+         <br>
+ <h2 class="form-head">Enter The Details of The Hotel</h2>
+ <br>
+ <form method="post" action="/listing/new">
+   <div class="mb-3">
+         <label for="title" class="form-label">Title</label>
+         <input name="title" class="form-control" type="text" placeHolder="Title"><br>
+   </div>
+   <div class="mb-3">
+       <label for="description" class="form-label">About Hotel</label>
+       <textarea rows="5" cols="15" class="form-control" name="description" placeholder="Enter Some Data About Hotel"></textarea><br>
+   </div>
+   <div class="row">
+         <div class="mb-3 col-md-4">
+            <label for="country" class="form-label">Enter Country</label>
+            <input name="country" class="form-control" type="text" placeHolder="Country"><br>
+         </div>
+            <div class="mb-3 col-md-8">
+               <label for="price" class="form-label">Enter Price</label>
+               <input name="price" class="form-control" type="text" placeHolder="Price"><br>
+            </div>
+   </div>
+   <div class="mb-3">
+      <label for="location" class="form-label">Location of The Hotel</label>
+      <input name="location" class="form-control" type="text" placeHolder="Location"><br>
+ </div>
+   <div class="mb-3">
+       <label for="url" class="form-label">Enter The URl / Link of The Image</label>
+       <input name="url" class="form-control" type="text" placeholder="image URL"><br>
+
+    <button class="btn btn-dark mt-3" type="submit">Click & Add</button>
+   </form>
+</div>
+</div>
+</div> 
+</body>

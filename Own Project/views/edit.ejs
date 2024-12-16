@@ -1,0 +1,18 @@
+<% layout('./layout/biolarplate.ejs') -%>
+<body>
+  <form method="POST" action="/edit/handle/<%= edit_data._id %>?_method=PATCH">
+   <label for="title">Book Title</label> 
+   <input type="text" name="title" value="<%= edit_data.title %>"><br>
+   <label for="author">Author</label> 
+   <input type="text" name="author" value="<%= edit_data.author %>"><br>
+   <label for="url">Image URL</label> 
+   <textarea rows="10" cols="25" type="text" name="url"><%= edit_data.image_url %></textarea><br>
+   <label for="price">Price</label> 
+   <input type="text" name="price" value="<%= edit_data.price %>"><br>
+   <label for="book_type">Book Type</label> 
+   <input type="text" name="book_type" value="<%= edit_data.book_type %>"><br>
+   <button type="submit">Click & Edit</button>
+  </form>
+</body>
+
+   

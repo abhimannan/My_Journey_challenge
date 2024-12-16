@@ -1,0 +1,19 @@
+<% layout('/layouts/biolerplate') %>
+<body>
+   <div class="container-body">
+      <% for(let data of res){ %>
+      <div class="card-container"> 
+        <a href="/show/<%= data._id %>">
+        <div class="card" style="width: 18rem;">
+             <img src="<%= data.image.url %>" class="card-img-top" alt="Hotel Image" style="height:20rem">
+             <div class="card-img-overlay">&hearts;</div>
+             <div class="card-body">
+                <p class="card-text"><%= data.title %></p>
+                <p class="price">&#8377; <%= data.price.toLocaleString("en-IN") %> / night</p>
+          </div>
+         </div>
+        </a>
+        </div>
+       <% } %>
+      </div>
+</body>

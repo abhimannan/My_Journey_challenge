@@ -5,6 +5,7 @@ let Chat=require("./models/chats");
 var methodOverride = require('method-override');
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'));
+const ExpressError = require("./ExpressError.js")
 
 // Middlewares
 let path=require("path");
@@ -37,70 +38,119 @@ Chat.insertMany(allChats);
 app.get("/home",(req,resp)=>{
   resp.render("home.ejs");
 });
-// index route
-app.get("/index",async (req,resp)=>{
-   let chats=await Chat.find();
-  //  console.log(chats);
+// index route 
+app.get("/index",async (req,resp,next)=>{
+  try{
+    let chats =await Chat.find();
    resp.render("index.ejs",{chats});
+  }
+  catch(err) {
+     next(err);
+  }
 });
 // Create send the message
 app.get("/new",(req,resp)=>{
    resp.render("new.ejs");
 });
-app.post("/post",(req,resp)=>{
-   let {from,message,to}=req.body; 
-   let n1=new Chat({
-     from:from,
-     message:message,
-     to:to,
-     sent_at:new Date()
-   });
-   n1.save().then((res)=>{
-     console.log(`Message was sent!`);
-   }).catch((e)=>{
-     console.log(e);
-   });
+
+app.post("/post",(req,resp,next)=>{
+  try{
+    let {from,message,to}=req.body; 
+    let n1=new Chat({
+      from:from,
+      message:message,
+      to:to,
+      sent_at:new Date()
+    });
+    n1.save().then((res)=>{
+      console.log(`Message was sent!`);
+    }).catch((e)=>{
+      console.log(e);
+    });
+  }
+  catch(err){
+     next(err);
+  }
    resp.redirect("/index");
 });
+// asyncwrap function
+function asyncwrap(fn) {
+   return function(req,resp,next) {
+     fn(req,resp,next).catch((err)=>{
+       next(err);
+     })
+   }
+}
+
+
 // Show Route
-app.get("/show/:id",(req,resp)=>{
-   let {id}=req.params;
-   let get_chat=Chat.findOne({_id:id});
-   get_chat.then((data)=>{
-     resp.render("single.ejs",{data});
-   }).catch((e)=>{
-     console.log(e);
-   })
-});
+app.get("/show/:id",asyncwrap(async (req,resp,next)=>{
+    let {id}=req.params;
+    let data=await Chat.findOne({_id:id});
+    if(data){
+      resp.render("single.ejs",{data});
+    }
+    else{
+      next(new ExpressError(404,"Page Not Found!"));
+    }
+}));
 // Edit Route
-app.get("/edit/:id",(req,resp)=>{
-   let {id}=req.params;
-   let edit_data=Chat.findOne({_id:id});
-   edit_data.then((res)=>{
-     resp.render("edit.ejs",{res});
+app.get("/edit/:id",(req,resp,next)=>{
+  try{
+    let {id}=req.params;
+    let edit_data=Chat.findOne({_id:id});
+    edit_data.then((res)=>{
+      resp.render("edit.ejs",{res});
+    }).catch((e)=>{
+      console.log(e);
+    });
+  }
+  catch(err){
+     next(err);
+  }
+   
+});
+app.patch("/modify/:id",(req,resp,next)=>{
+  try{
+    let {id}=req.params;
+    let {from,message,to}=req.body;
+    Chat.updateMany({_id:id},{runValidator:true,new:true},{
+      from:from,
+      message:message,
+      to:to
+    }).then((res)=>{
+     console.log("Edited!");
    }).catch((e)=>{
      console.log(e);
    });
-});
-app.patch("/modify/:id",(req,resp)=>{
-  let {id}=req.params;
-   let {from,message,to}=req.body;
-   Chat.updateMany({_id:id},{runValidator:true,new:true},{
-     from:from,
-     message:message,
-     to:to
-   }).then((res)=>{
-    console.log("Edited!");
-  }).catch((e)=>{
-    console.log(e);
-  });
+  }
+  catch(err){
+     next(err);
+  }
+ 
   resp.redirect("/index");
 });
 // Delete the chat
-app.delete("/delete/:id",async (req,resp)=>{
-   let {id}=req.params;
-   await Chat.deleteOne({_id:id});
+app.delete("/delete/:id",async (req,resp,next)=>{
+  try{
+    let {id}=req.params;
+    await Chat.deleteOne({_id:id});
+  }
+  catch(err){
+     next(err);
+  }
    resp.redirect("/index");
+});
+
+app.use((err,req,resp,next)=>{
+   console.log(err.name);
+   next(err);
+});
+
+//
+app.use((err,req,resp,next)=>{
+   let {status=500,message="Chat Not found"} = err;
+   resp.status(status).send(message);
 });
 
 app.listen(port,()=>{

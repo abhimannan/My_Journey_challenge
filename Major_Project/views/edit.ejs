@@ -1,0 +1,51 @@
+<% layout('/layouts/biolerplate.ejs') %>
+<body>
+  <div class="row mt-3">
+    <div class="col-8 offset-2">
+      <% for (let e of edit_list) { %>
+        <form method="POST" action="/edit/<%= e._id %>/handle?_method=PATCH">
+          <h2>Edit Hotel Details Here...</h2>
+          
+          <!-- Hotel Name -->
+          <div class="mb-3">
+            <label for="title" class="form-label">Hotel Name</label>
+            <input name="title" class="form-control" type="text" value="<%= e.title %>">
+          </div>
+
+          <!-- About Hotel -->
+          <div class="mb-3">
+            <label for="desc" class="form-label">About Hotel</label>
+            <textarea name="desc" class="form-control" rows="4" cols="15" placeholder="About Hotel"><%= e.description %></textarea>
+          </div>
+
+          <!-- Hotel Image URL -->
+          <div class="mb-3">
+            <label for="url" class="form-label">Hotel Image URL / Link</label>
+            <input name="url" class="form-control" type="text" value="<%= e.image.url %>">
+          </div>
+
+          <!-- Location -->
+          <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input name="location" class="form-control" type="text" value="<%= e.location %>">
+          </div>
+
+          <!-- Price and Country -->
+          <div class="row">
+            <div class="mb-3 col-md-4">
+              <label for="price" class="form-label">Price</label>
+              <input name="price" class="form-control" type="text" value="<%= e.price %>">
+            </div>
+            <div class="mb-3 col-md-8">
+              <label for="country" class="form-label">Country</label>
+              <input name="country" class="form-control" type="text" value="<%= e.country %>">
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button class="btn btn-dark mt-3" type="submit">Submit Data</button>
+        </form>
+      <% } %>
+    </div>
+  </div>
+</body>
