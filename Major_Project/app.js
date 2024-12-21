@@ -5,18 +5,22 @@ let path=require("path");
 let Listing=require("./models/listing.js");
 var methodOverride = require('method-override');
 let ejsMate = require('ejs-mate');
+let WrapAsync = require("./utils/WrapAsync.js");
+let ExpressError = require("./utils/ExpressError.js");
+let SchemaValidation = require("./schema.js");
+
 
 app.get("/",(req,resp)=>{
   resp.send("I Am Root");
 });
 // Middlewares
 app.set("view engine","ejs");
-app.set("views",path.join(__dirname,"views"))
+app.set("views",path.join(__dirname,"views"));
 app.use(express.static(path.join(__dirname,"public")));
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 // override with POST having ?_method=DELETE
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
 app.engine('ejs', ejsMate);
 
 // getting-started.js
@@ -42,56 +46,71 @@ async function main() {
   resp.send("Data Inserted");
 }); */
 // Listing route
-app.get("/listings",(req,resp)=>{
- Listing.find({}).then((res)=>{
-   resp.render("listings.ejs",{res});
- }).catch((e)=>{
-     console.log(e);
- });
-});
+app.get("/listings",WrapAsync(async (req,resp,next)=>{
+    let res= await Listing.find({});
+    resp.render("listings.ejs",{res});
+}));
 // Show Route
-app.get("/show/:id",async (req,resp)=>{
+app.get("/show/:id",WrapAsync(async (req,resp)=>{
    let {id}=req.params;
    let res= await Listing.findOne({_id:id});
    resp.render("show.ejs",{res});
-});
+}));
+
+// MIddleware for schema vaidation
+const validateSchema = (req, res, next) => {
+  const { error } = SchemaValidation.validate(req.body); // Destructure the error directly
+  if (error) {
+    // Map error details to provide clear messages
+    const errorMessage = error.details.map((el) => el.message).join(', ');
+    // Throw an ExpressError with the mapped error message
+    throw new ExpressError(400, errorMessage);
+  } else {
+    next(); // Proceed to the next middleware if validation passes
+  }
+};
+
 // New Route
 app.get("/new",(req,resp)=>{
    resp.render("new.ejs");
 });
 // Add The details into database
-app.post("/listing/new",(req,resp)=>{
-   let {title,description,price,location,country,url}=req.body;
-   Listing.insertMany({
-    title:title,
-    description:description,
-    price:price,
-    location:location,
-    country:country,
-    image: {
-      filename: "default", // Assign a default filename or handle dynamically
-      url: url,
-    }
-   }).then((res)=>{
-     console.log(res);
-   }).catch((e)=>{
-     console.log(e);
-   });
-   resp.redirect("/listings")
-});
+app.post(
+  '/listing/new',validateSchema,
+  WrapAsync(async (req, resp, next) => {
+    const { title, description, price, location, country, url } = req.body;
+
+    // Insert new listing into the database
+    await Listing.create({
+      title,
+      description,
+      price,
+      location,
+      country,
+      image: {
+        filename: 'default', // Default filename if not provided
+        url: url || 'https://via.placeholder.com/150', // Fallback to a placeholder URL if `url` is not provided
+      },
+    });
+    // Redirect to the listings page
+    resp.redirect('/listings');
+  })
+);
 // Edit Route
-app.get("/edit/:id",async (req,resp)=>{
+app.get("/edit/:id",WrapAsync(async (req,resp)=>{
    let {id}=req.params;
    let edit_list=await Listing.find({_id:id});
    resp.render("edit.ejs",{edit_list});
-});
-app.patch("/edit/:id/handle",async (req,resp)=>{
+}));
+// Update Route
+app.patch("/edit/:id/handle",validateSchema,
+  WrapAsync(async (req,resp)=>{
    let {id}=req.params;
    // let listing= req.body.listing
-   let {title,desc,url,price,location,country}=req.body;
+   let {title,description,url,price,location,country}=req.body;
     await Listing.findOneAndUpdate({_id:id},{
-      title:title,  
-      description:desc,
+      title:title,
+      description:description,
       price:price,
       location:location,
       country:country,
@@ -100,13 +119,25 @@ app.patch("/edit/:id/handle",async (req,resp)=>{
       }
     });
     resp.redirect("http://localhost:8080/listings")
-});
+}));
 // Delete Operation
-app.delete("/delete/:id",async (req,resp)=>{
-    let {id}=req.params;  
+app.delete("/delete/:id",WrapAsync(async (req,resp)=>{
+    let {id}=req.params;
     await Listing.findOneAndDelete({_id:id});
     resp.redirect("/listings");
+}));
+// Path Not Found
+app.all("*",(req,resp,next)=>{
+   next(new ExpressError(404,"Page Not Found!"));
 });
+
+// Default Error Handling
+app.use((err,req,resp,next)=>{
+   let {status=500,message="Error"}=err;
+  //  resp.status(status).send(message);
+  resp.status(status).render("error.ejs",{message})
+});
+
 app.listen(port,(req,resp)=>{
   console.log(`The server is Running in ${port}`);
 });

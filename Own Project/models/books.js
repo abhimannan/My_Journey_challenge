@@ -20,7 +20,10 @@ const bookSchema = new Schema({
   },
   image_url: {
     type:String,
-    default:"https://www.bing.com/images/search?view=detailV2&insightsToken=bcid_S6Qv46LIs9oHqxcxoNWLuD9SqbotqVTdPzI&FORM=SBIIRP&iss=SBIUPLOADGET&sbisrc=ImgDropper&idpbck=1&sbifsz=371+x+277+%c2%b7+8.91+kB+%c2%b7+jpeg&sbifnm=download.jpg&thw=371&thh=277&ptime=138&dlen=12160&expw=371&exph=277",
+    default:"https://th.bing.com/th/id/OIP.P1hfBfyKdnmO2R82Ow3lewHaLH?rs=1&pid=ImgDetMain",
+    set:(v)=>v==""?
+     "https://th.bing.com/th/id/OIP.P1hfBfyKdnmO2R82Ow3lewHaLH?rs=1&pid=ImgDetMain"
+     :v,
   },
   price:{
     type:Number

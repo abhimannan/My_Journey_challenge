@@ -7,34 +7,59 @@
          <br>
  <h2 class="form-head">Enter The Details of The Hotel</h2>
  <br>
- <form method="post" action="/listing/new">
+ <form method="post" action="/listing/new" class="needs-validation" novalidate>
    <div class="mb-3">
          <label for="title" class="form-label">Title</label>
-         <input name="title" class="form-control" type="text" placeHolder="Title"><br>
-   </div>
+         <input name="title" class="form-control" type="text" placeHolder="Title" required><br>
+         <div class="invalid-feedback">
+            Title Should Be Valid!
+          </div>
+      </div>
    <div class="mb-3">
        <label for="description" class="form-label">About Hotel</label>
-       <textarea rows="5" cols="15" class="form-control" name="description" placeholder="Enter Some Data About Hotel"></textarea><br>
+       <textarea rows="5" cols="15" class="form-control" name="description" placeholder="Enter Some Data About Hotel" required></textarea><br>
+       <div class="invalid-feedback">
+         Description Should Be Valid!
+       </div>
    </div>
    <div class="row">
          <div class="mb-3 col-md-4">
             <label for="country" class="form-label">Enter Country</label>
-            <input name="country" class="form-control" type="text" placeHolder="Country"><br>
+            <input name="country" class="form-control" type="text" placeHolder="Country" required><br>
+            <div class="invalid-feedback">
+               Country Name Should Be Valid!
+             </div>
          </div>
             <div class="mb-3 col-md-8">
                <label for="price" class="form-label">Enter Price</label>
-               <input name="price" class="form-control" type="text" placeHolder="Price"><br>
+               <input name="price" class="form-control" type="text" placeHolder="Price" required><br>
+               <div class="invalid-feedback">
+                  Price Should Be Valid!
+                </div>
             </div>
    </div>
    <div class="mb-3">
       <label for="location" class="form-label">Location of The Hotel</label>
-      <input name="location" class="form-control" type="text" placeHolder="Location"><br>
- </div>
+      <input name="location" class="form-control" type="text" placeHolder="Location" required><br>
+      <div class="invalid-feedback">
+         Location Should Be Valid!
+       </div>
+   </div>
    <div class="mb-3">
        <label for="url" class="form-label">Enter The URl / Link of The Image</label>
        <input name="url" class="form-control" type="text" placeholder="image URL"><br>
-
-    <button class="btn btn-dark mt-3" type="submit">Click & Add</button>
+       <div class="col-12">
+         <div class="form-check">
+           <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+           <label class="form-check-label" for="invalidCheck">
+             Agree to terms and conditions
+           </label>
+           <div class="invalid-feedback">
+             You must agree before submitting.
+           </div>
+         </div>
+       </div>
+       <button class="btn btn-dark mt-3" type="submit">Click & Add</button>
    </form>
 </div>
 </div>

@@ -8,7 +8,7 @@
   <div class="card-body">
     <h5 class="card-title"><b><%= res.title %></b></h5>
     <p class="card-text"><large class="text-body"><%= res.description %></large></p>
-    <p class="card-text"><large class="text-body">&#8377; <%= res.price.toLocaleString("en-IN") %></large></p>
+    <p class="card-text"><large class="text-body">&#8377; <%= res.price ? res.price.toLocaleString("en-IN") : 'N/A' %> / Night</large></p>
     <p class="card-text"><large class="text-body"><%= res.location %></large></p>
     <p class="card-text"><large class="text-body"><%= res.country %></large></p>
    <br>

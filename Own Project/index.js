@@ -5,6 +5,9 @@ let path=require("path");
 let Book=require("./models/books.js");
 var methodOverride = require('method-override');
 let engine = require('ejs-mate');
+let MyError = require("./utils/ExpressError.js");
+let wrapAsync=require("./utils/wrapAsync.js");
+let SchemaValidation = require("./schema.js");
 
 // Middlewares
 app.set("view engine","ejs");
@@ -27,6 +30,17 @@ main()
 async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/Book');
 }
+// Schema validation
+let schemaValidation=(req,resp,next)=>{
+   let {error}=SchemaValidation.validate(req.body);
+   if(error){
+    const errorMessage = error.details.map((el) => el.message).join(', ');
+      throw new MyError(400,errorMessage);
+   }
+   else{
+     next();
+   }
+} 
 
 // Inserting Data
 /*let b1=new Book({
@@ -42,75 +56,73 @@ b1.save().then((res)=>{
   console.log(e);
 });*/
 // index Route
-app.get("/index",async (req,resp)=>{
+app.get("/index",wrapAsync(async (req,resp)=>{
   let data=await Book.find({});
   resp.render("index.ejs",{data});
-});
-app.get("/index/show/:id",(req,resp)=>{
+}));
+app.get("/index/show/:id",wrapAsync(async (req,resp)=>{
  let {id}=req.params;
-  let required_book=Book.findOne({_id:id});
-  required_book.then((res)=>{
+  let res=await Book.findOne({_id:id});
     resp.render("show.ejs",{res});
-  }).catch((e)=>{
-    console.log(e);
-  });
-});
+}));
 // Edit Route
-app.get("/index/edit/:id",async (req,resp)=>{
+app.get("/index/edit/:id",wrapAsync(async (req,resp)=>{
  let {id}=req.params;
    let edit_data=await Book.findOne({_id:id});
    resp.render("edit.ejs",{edit_data});
-});
-app.patch("/edit/handle/:id",(req,resp)=>{
+}));
+// Update Route
+app.patch("/edit/handle/:id",schemaValidation,
+  wrapAsync(async (req,resp)=>{
     let {id}=req.params;
-    let {title,author,url,price,book_type}=req.body;
-    Book.findOneAndUpdate({_id:id},{
+    let {title,author,image_url,price,book_type}=req.body;
+    await Book.findOneAndUpdate({_id:id},{
      title:title,
      author:author,
-     image_url:url,
+     image_url:image_url,
      price:price,
      book_type:book_type
-    }).then((res)=>{
-      console.log("Edited!")
-    }).catch((e)=>{
-      console.log(e);
-    })
+    });
     resp.redirect("/index");
-});
+}));
 // Create Route
-app.get("/index/new",async (req,resp)=>{
+app.get("/index/new",(req,resp)=>{
     resp.render("new.ejs");
 });
-app.post("/new/create",(req,resp)=>{
-  let {title,author,url,price,book_type}=req.body;
+app.post("/new/create",schemaValidation,
+  wrapAsync(async (req,resp)=>{
+  let {title,author,image_url,price,book_type}=req.body;
   let add_book=new Book({
    title:title,
    author:author,
-   image_url:url,
+   image_url:image_url,
    price:price,
    book_type:book_type
   });
-  add_book.save().then((res)=>{
-    console.log(`Data Inserted!`);
-  }).catch((e)=>{
-    console.log(e);
-  });
+  await add_book.save();
   resp.redirect("/index");
-});
+}));
 // Delete Route
-app.delete("/delete/:id",(req,resp)=>{
+app.delete("/delete/:id",wrapAsync(async (req,resp)=>{
   let {id}=req.params;
-  Book.deleteOne({_id:id}).then((res)=>{
-    console.log("Deleted!");
-  }).catch((e)=>{
-     console.log(e);
-  });
+  await Book.deleteOne({_id:id})
   resp.redirect("/index");
-});
+}));
 
 app.get("/",(req,resp)=>{
   resp.send("<h1>Home Page</h1>");
 });
+// to handle the page not found error
+app.all("*",(req,resp,next)=>{
+   next(new MyError(400,"Page Was Not Found!"));
+});
+
+// handling the default error
+app.use((err,req,resp,next)=>{
+   let {status=400,message="Some Error"}=err;
+   resp.status(status).render("error.ejs",{message});
+});
+
 
 app.listen(port,(req,resp)=>{
   console.log(`The Server is Running in Port no. ${port}`);

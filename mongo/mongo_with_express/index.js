@@ -5,7 +5,7 @@ let Chat=require("./models/chats");
 var methodOverride = require('method-override');
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'));
-const ExpressError = require("./ExpressError.js")
+const ExpressError = require("./ExpressError.js");
 
 // Middlewares
 let path=require("path");
@@ -38,7 +38,7 @@ Chat.insertMany(allChats);
 app.get("/home",(req,resp)=>{
   resp.render("home.ejs");
 });
-// index route 
+// index route
 app.get("/index",async (req,resp,next)=>{
   try{
     let chats =await Chat.find();
@@ -74,15 +74,22 @@ app.post("/post",(req,resp,next)=>{
    resp.redirect("/index");
 });
 // asyncwrap function
-function asyncwrap(fn) {
-   return function(req,resp,next) {
-     fn(req,resp,next).catch((err)=>{
-       next(err);
+function asyncwrap(fx){
+   return function(req,resp,next){
+     fx(req,resp,next).catch((e)=>{
+       next(e);
      })
    }
 }
-
-
+/* app.use("/show/:id",(req,resp,next)=>{
+   let {name}=req.query;
+   if(name==="Abhi"){
+     next();
+   }
+   else{
+     throw new ExpressError(500,"Name NotMatched");
+   }
+}); */
 // Show Route
 app.get("/show/:id",asyncwrap(async (req,resp,next)=>{
     let {id}=req.params;
@@ -91,25 +98,20 @@ app.get("/show/:id",asyncwrap(async (req,resp,next)=>{
       resp.render("single.ejs",{data});
     }
     else{
-      next(new ExpressError(404,"Page Not Found!"));
+       next(new ExpressError("400","Data Not Found"));
+    }
+})); 
+// Edit Route
+app.get("/edit/:id",asyncwrap(async (req,resp,next)=>{
+    let {id}=req.params;
+    let res= await Chat.findOne({_id:id});
+    if(res){
+      resp.render("edit.ejs",{res});
+    }
+    else{
+      next(new ExpressError(500,"data not get"));
     }
 }));
-// Edit Route
-app.get("/edit/:id",(req,resp,next)=>{
-  try{
-    let {id}=req.params;
-    let edit_data=Chat.findOne({_id:id});
-    edit_data.then((res)=>{
-      resp.render("edit.ejs",{res});
-    }).catch((e)=>{
-      console.log(e);
-    });
-  }
-  catch(err){
-     next(err);
-  }
-   
-});
 app.patch("/modify/:id",(req,resp,next)=>{
   try{
     let {id}=req.params;
@@ -127,7 +129,6 @@ app.patch("/modify/:id",(req,resp,next)=>{
   catch(err){
      next(err);
   }
- 
   resp.redirect("/index");
 });
 // Delete the chat
@@ -141,15 +142,30 @@ app.delete("/delete/:id",async (req,resp,next)=>{
   }
    resp.redirect("/index");
 });
-
+// Mongoose Error Handling
+function handleError(err){
+   console.log("This is Cast Error");
+   return err;
+}
 app.use((err,req,resp,next)=>{
-   console.log(err.name);
+  //  console.log(err.name);
+   if(err.name==="CastError"){
+      err=handleError(err);
+   }
    next(err);
 });
 
-//
+// app.get("/err",(req,resp)=>{
+//    abcd=abcd;
+// });
+// app.use("/err",(err,req,resp,next)=>{
+//   console.log("ERROR");
+//    resp.send(err);
+// });
+
+// default errors :Middleware
 app.use((err,req,resp,next)=>{
-   let {status=500,message="Chat Not found"} = err;
+   let {status=500,message="Page Not found"} = err;
    resp.status(status).send(message);
 });
 

@@ -1,51 +1,82 @@
-<% layout('/layouts/biolerplate.ejs') %>
-<body>
-  <div class="row mt-3">
-    <div class="col-8 offset-2">
+<% layout('/layouts/biolerplate') %>
+
+<div class="row mt-3">
+  <div class="col-8 offset-2">
+    <% if (edit_list && edit_list.length > 0) { %>
       <% for (let e of edit_list) { %>
-        <form method="POST" action="/edit/<%= e._id %>/handle?_method=PATCH">
+        <form method="POST" action="/edit/<%= e._id %>/handle?_method=PATCH" class="needs-validation" novalidate>
           <h2>Edit Hotel Details Here...</h2>
-          
+            
           <!-- Hotel Name -->
           <div class="mb-3">
-            <label for="title" class="form-label">Hotel Name</label>
-            <input name="title" class="form-control" type="text" value="<%= e.title %>">
+            <label for="title_<%= e._id %>" class="form-label">Hotel Name</label>
+            <input id="title_<%= e._id %>" name="title" class="form-control" type="text" value="<%= e.title || '' %>" required>
+            <div class="invalid-feedback" required>Title Should Be Valid!</div>
           </div>
 
           <!-- About Hotel -->
           <div class="mb-3">
-            <label for="desc" class="form-label">About Hotel</label>
-            <textarea name="desc" class="form-control" rows="4" cols="15" placeholder="About Hotel"><%= e.description %></textarea>
+            <label for="desc_<%= e._id %>" class="form-label">About Hotel</label>
+            <textarea required id="<%= e._id %>" name="description" class="form-control" rows="4" cols="15" placeholder="About Hotel"><%= e.description || '' %></textarea>
+            <div class="invalid-feedback">
+              Description Should Be Valid!
+            </div>
           </div>
 
           <!-- Hotel Image URL -->
           <div class="mb-3">
-            <label for="url" class="form-label">Hotel Image URL / Link</label>
-            <input name="url" class="form-control" type="text" value="<%= e.image.url %>">
+            <label for="url_<%= e._id %>" class="form-label">Hotel Image URL / Link</label>
+            <input required id="url_<%= e._id %>" name="url" class="form-control" type="text" value="<%= e.image?.url || '' %>">
+            <div class="invalid-feedback">
+              URL / Link Should Be Valid!
+            </div>
           </div>
 
           <!-- Location -->
           <div class="mb-3">
-            <label for="location" class="form-label">Location</label>
-            <input name="location" class="form-control" type="text" value="<%= e.location %>">
+            <label for="location_<%= e._id %>" class="form-label">Location</label>
+            <input required id="location_<%= e._id %>" name="location" class="form-control" type="text" value="<%= e.location || '' %>">
+            <div class="invalid-feedback">
+              Location Should Be Valid!
+            </div>
           </div>
 
           <!-- Price and Country -->
           <div class="row">
             <div class="mb-3 col-md-4">
-              <label for="price" class="form-label">Price</label>
-              <input name="price" class="form-control" type="text" value="<%= e.price %>">
+              <label for="price_<%= e._id %>" class="form-label">Price</label>
+              <input required id="price_<%= e._id %>" name="price" class="form-control" type="text" value="<%= e.price || '' %>">
+              <div class="invalid-feedback">
+                Price Should Be Valid!
+              </div>
             </div>
             <div class="mb-3 col-md-8">
-              <label for="country" class="form-label">Country</label>
-              <input name="country" class="form-control" type="text" value="<%= e.country %>">
+              <label for="country_<%= e._id %>" class="form-label">Country</label>
+              <input required id="country_<%= e._id %>" name="country" class="form-control" type="text" value="<%= e.country || '' %>">
+              <div class="invalid-feedback">
+                Country Name Should Be Valid!
+              </div>
             </div>
           </div>
-
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+              <label class="form-check-label" for="invalidCheck">
+                Agree to terms and conditions Before Editing
+              </label>
+              <div class="invalid-feedback">
+                You must agree before submitting.
+              </div>
+            </div>
+          </div>
           <!-- Submit Button -->
           <button class="btn btn-dark mt-3" type="submit">Submit Data</button>
         </form>
       <% } %>
-    </div>
+    <% } else { %>
+      <p>No data available for editing.</p>
+    <% } %>
   </div>
-</body>
+</div>
+
+<script src="/js/script.js"></script>
