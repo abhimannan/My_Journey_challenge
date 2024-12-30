@@ -1,0 +1,26 @@
+<%- layout('./layout/boilarplate.ejs') %>
+<body>
+ <h2>Edit The Food Details</h2>
+
+ <div class="food">
+  <form method="POST" action="/handle/<%= data._id %>?_method=PATCH">
+
+  <label for="recipy_name">Recipy Name</label>
+  <input type="text" name="recipy_name" value="<%= data.recipy_name %>"><br>
+  
+  <label for="image">Image URL / Link</label>
+  <input type="text" name="image" value="<%= data.image %>"><br>
+
+  <label for="description">Description</label>
+  <input type="text" name="description" value="<%= data.description %>"><br>
+
+  <label for="quantity">Quantity</label>
+  <input type="text" name="quantity" value="<%= data.quantity %>"><br>
+
+  <label for="price">Price</label>
+  <input type="text" name="price" value="<%= data.price %>"><br>
+
+   <button type="submit">Click & Edit</button>
+ </form>
+ </div>
+</body>

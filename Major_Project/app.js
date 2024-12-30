@@ -25,6 +25,7 @@ app.engine('ejs', ejsMate);
 
 // getting-started.js
 const mongoose = require('mongoose');
+const Review = require("./models/review.js");
 main()
 .then((res)=>{
   console.log("DB Connected!")
@@ -57,6 +58,7 @@ app.get("/show/:id",WrapAsync(async (req,resp)=>{
    resp.render("show.ejs",{res});
 }));
 
+
 // MIddleware for schema vaidation
 const validateSchema = (req, res, next) => {
   const { error } = SchemaValidation.validate(req.body); // Destructure the error directly
@@ -70,6 +72,7 @@ const validateSchema = (req, res, next) => {
   }
 };
 
+
 // New Route
 app.get("/new",(req,resp)=>{
    resp.render("new.ejs");
@@ -79,7 +82,6 @@ app.post(
   '/listing/new',validateSchema,
   WrapAsync(async (req, resp, next) => {
     const { title, description, price, location, country, url } = req.body;
-
     // Insert new listing into the database
     await Listing.create({
       title,
@@ -118,7 +120,7 @@ app.patch("/edit/:id/handle",validateSchema,
          url:url
       }
     });
-    resp.redirect("http://localhost:8080/listings")
+    resp.redirect("/listings")
 }));
 // Delete Operation
 app.delete("/delete/:id",WrapAsync(async (req,resp)=>{
@@ -126,6 +128,30 @@ app.delete("/delete/:id",WrapAsync(async (req,resp)=>{
     await Listing.findOneAndDelete({_id:id});
     resp.redirect("/listings");
 }));
+// Reviews
+app.post("/listings/:id/review",async (req,resp)=>{
+  let {id} = req.params;
+  let {comment,rating} = req.body;
+  // console.log(comment);
+  // console.log(rating);
+ let hotel_data =await Listing.findById(`${id}`);
+ let reviewAdd = new Review({
+   comment:comment,
+   rating:rating
+ });
+ hotel_data.reviews.push(reviewAdd);
+ let res = await reviewAdd.save();
+ let res2 = await hotel_data.save();
+ console.log(res);
+ console.log(res2);
+
+  //  resp.send("working fine!");
+   resp.redirect(`/show/${id}`);
+});
+
+
+
+
 // Path Not Found
 app.all("*",(req,resp,next)=>{
    next(new ExpressError(404,"Page Not Found!"));

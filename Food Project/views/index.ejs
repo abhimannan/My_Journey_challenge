@@ -1,0 +1,19 @@
+<%- layout('./layout/boilarplate.ejs') %>
+<body>
+ <h2>Show Route</h2>
+ <a href="/index/new"><button>Add New Recipy</button></a>
+ <% for(let i of data){ %>
+ <a href="/index/show/<%= i._id %>">
+  <div class="data">
+   <ul>
+     <li><%= i.recipy_name %></li>
+     <li><%= i._id %></li>
+     <!-- <li><%= i.description %></li> -->
+     <!-- <li><%= i.quantity %></li>
+     <li><%= i.price %></li> -->
+   </ul>
+ </div>
+</a>
+<% } %>
+
+</body>

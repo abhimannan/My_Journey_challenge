@@ -34,13 +34,13 @@ async function main() {
 let schemaValidation=(req,resp,next)=>{
    let {error}=SchemaValidation.validate(req.body);
    if(error){
-    const errorMessage = error.details.map((el) => el.message).join(', ');
+      const errorMessage = error.details.map((el) => el.message).join(',');
       throw new MyError(400,errorMessage);
    }
    else{
-     next();
+      next();
    }
-} 
+}
 
 // Inserting Data
 /*let b1=new Book({

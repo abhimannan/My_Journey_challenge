@@ -1,0 +1,20 @@
+<%- layout('./layout/boilarplate.ejs') %>
+<body>
+ <h1>Recepy Details</h1>
+ <div class="details">
+   <p>Name : <%= single_data.recipy_name %></p>
+   <img src="<%= single_data.image %>" width="200" height="200">
+   <p>About : <%= single_data.description %></p>
+   <p>Quantity : <%= single_data.quantity %></p>
+   <p>Price : <%= single_data.price %></p>
+ </div>
+ <div class="buttons">
+  <a href="/index/edit/<%= single_data._id %>"><button>Edit</button></a>
+   <br>
+   <form method="POST" action="/delete/<%= single_data._id %>?_method=DELETE">
+      <button type="submit">Delete</button>
+   </form>
+
+ </div>
+
+</body>

@@ -2,24 +2,24 @@
 <body>
    <div class="edit-control">
    <div class="row mt-3">
-      <div class="col-8 offset-2">
+      <div class="col-6 offset-3">
          <br>
          <br>
  <h2 class="form-head">Enter The Details of The Hotel</h2>
- <br>
- <form method="post" action="/listing/new" class="needs-validation" novalidate>
+ <br> 
+ <form id="new" method="post" action="/listing/new" class="needs-validation" novalidate>
    <div class="mb-3">
          <label for="title" class="form-label">Title</label>
-         <input name="title" class="form-control" type="text" placeHolder="Title" required><br>
+         <input name="title" class="form-control" type="text" placeHolder="Enter Your Title" required><br>
          <div class="invalid-feedback">
-            Title Should Be Valid!
+            <b>Title Should Be Valid!</b>
           </div>
       </div>
    <div class="mb-3">
        <label for="description" class="form-label">About Hotel</label>
        <textarea rows="5" cols="15" class="form-control" name="description" placeholder="Enter Some Data About Hotel" required></textarea><br>
        <div class="invalid-feedback">
-         Description Should Be Valid!
+        <b>Description Should Be Valid!</b>
        </div>
    </div>
    <div class="row">
@@ -27,14 +27,14 @@
             <label for="country" class="form-label">Enter Country</label>
             <input name="country" class="form-control" type="text" placeHolder="Country" required><br>
             <div class="invalid-feedback">
-               Country Name Should Be Valid!
+                <b>Country Name Should Be Valid!</b>
              </div>
          </div>
             <div class="mb-3 col-md-8">
                <label for="price" class="form-label">Enter Price</label>
                <input name="price" class="form-control" type="text" placeHolder="Price" required><br>
                <div class="invalid-feedback">
-                  Price Should Be Valid!
+                   <b>Price Should Be Valid!</b>
                 </div>
             </div>
    </div>
@@ -42,7 +42,7 @@
       <label for="location" class="form-label">Location of The Hotel</label>
       <input name="location" class="form-control" type="text" placeHolder="Location" required><br>
       <div class="invalid-feedback">
-         Location Should Be Valid!
+           <b>Location Should Be Valid!</b>
        </div>
    </div>
    <div class="mb-3">
@@ -52,10 +52,10 @@
          <div class="form-check">
            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
            <label class="form-check-label" for="invalidCheck">
-             Agree to terms and conditions
+              <b>Agree to terms and conditions</b>
            </label>
            <div class="invalid-feedback">
-             You must agree before submitting.
+               <b>You must agree before submitting.</b>
            </div>
          </div>
        </div>
@@ -63,5 +63,5 @@
    </form>
 </div>
 </div>
-</div> 
+</div>
 </body>

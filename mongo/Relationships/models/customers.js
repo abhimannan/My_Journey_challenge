@@ -23,12 +23,11 @@
     name:String,
     orders:[
      {
-       type: Schema.Types.ObjectId,
-       ref: 'Order'
+       type : Schema.Types.ObjectId,
+       ref : 'Order'
      }
     ]
  });
-
 
  // Model
  let Order = mongoose.model("Order",orderSchema);

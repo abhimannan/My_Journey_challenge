@@ -1,0 +1,14 @@
+<%- layout('./layout/boilarplate.ejs') %>
+<body>
+ <div class="new">
+   <form method="post" action="/add/new">
+     <input type="text" name="recipy_name" placeholder="Food Name"><br>
+     <input type="text" name="image" placeholder="Image"><br>
+     <input type="text" name="description" placeholder="About"><br>
+     <input type="text" name="quantity" placeholder="Quantity"><br>
+     <input type="number" name="price" placeholder="Price"><br>
+     <br>
+     <button type="submit">Add</button>
+   </form>
+ </div>
+</body>
