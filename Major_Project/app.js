@@ -8,7 +8,7 @@ let ejsMate = require('ejs-mate');
 let WrapAsync = require("./utils/WrapAsync.js");
 let ExpressError = require("./utils/ExpressError.js");
 let SchemaValidation = require("./schema.js");
-
+let ReviewValidation =require("./schema.js");
 
 app.get("/",(req,resp)=>{
   resp.send("I Am Root");
@@ -72,6 +72,19 @@ const validateSchema = (req, res, next) => {
   }
 };
 
+// MIddleware for review vaidation
+const validateReview = (req, res, next) => {
+  const { error } = ReviewValidation.validate(req.body); // Destructure the error directly
+  if (error) {
+    // Map error details to provide clear messages
+    const errorMessage = error.details.map((el) => el.message).join(', ');
+    // Throw an ExpressError with the mapped error message
+    throw new ExpressError(400, errorMessage);
+  } else {
+      next(); // Proceed to the next middleware if validation passes
+  }
+};
+
 
 // New Route
 app.get("/new",(req,resp)=>{
@@ -129,7 +142,9 @@ app.delete("/delete/:id",WrapAsync(async (req,resp)=>{
     resp.redirect("/listings");
 }));
 // Reviews
-app.post("/listings/:id/review",async (req,resp)=>{
+app.post("/listings/:id/review",
+  validateReview,
+  WrapAsync(async (req,resp)=>{
   let {id} = req.params;
   let {comment,rating} = req.body;
   // console.log(comment);
@@ -142,12 +157,12 @@ app.post("/listings/:id/review",async (req,resp)=>{
  hotel_data.reviews.push(reviewAdd);
  let res = await reviewAdd.save();
  let res2 = await hotel_data.save();
- console.log(res);
- console.log(res2);
-
+//  console.log(res);
+//  console.log(res2);
   //  resp.send("working fine!");
    resp.redirect(`/show/${id}`);
-});
+}));
+
 
 
 

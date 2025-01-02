@@ -342,8 +342,6 @@ footer {
 }
 
 
-
-
 /* New Listings */
 #new {
    background-color: #17e1ef;
@@ -356,5 +354,96 @@ footer {
 #show {
    padding:25px;
    width:35rem;
-
 }
+.show-img {
+   height:30vh;
+   
+}
+/* Ensure that images inside cards are responsive */
+.card-img-top {
+  width: 100%;
+  height: auto;
+}
+
+/* Center the content vertically on smaller screens */
+.card-body {
+  text-align: center;
+}
+
+/* Custom styles for the form */
+.form-label {
+  font-weight: bold;
+}
+
+textarea.form-control {
+  resize: vertical;
+}
+
+/* Ensure the button has full width on mobile */
+.btn {
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+}
+.show-img {
+   height: 30vh;
+}
+.edit-btn:hover {
+    color:white !important;
+}
+/* Add responsive padding for smaller screens */
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media (max-width: 576px) {
+  /* For smaller screens (mobile) */
+  .col-md-6 {
+     max-width: 100%;  /* Full-width on small screens */
+  }
+  .card-body {
+     padding: 15px;
+  }
+  
+  .card-title {
+     font-size: 1.2rem; /* Adjust font size on small screens */
+  }
+
+  .text-body {
+     font-size: 0.9rem; /* Smaller text size for descriptions */
+  }
+
+  .btn {
+     width: 100%; /* Full-width buttons on small screens */
+     max-width: 100%; /* Button width doesn't exceed screen size */
+  }
+
+  /* Space adjustments on small screens */
+  .form-label {
+     font-size: 0.9rem;
+  }
+  
+  textarea.form-control {
+     font-size: 0.9rem;
+  }
+
+  .card-img-top {
+     height: auto; /* Ensures images maintain aspect ratio */
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  /* Medium devices (tablets and large phones) */
+  .col-md-6 {
+     max-width: 90%;
+  }
+}
+
+@media (min-width: 769px) {
+  /* Large devices (desktops) */
+  .col-md-6 {
+     max-width: 50%;
+  }
+}
+

@@ -1,35 +1,71 @@
 <% layout('/layouts/biolerplate') %>
-<div class="container">
+<div class="container mt-3">
+   <!-- Hotel Details Card Section -->
    <div class="row justify-content-center">
-      <div class="col-md-4 col-8">
-         <br>
+      <div class="col-md-6 col-12">
          <div id="show" class="card card-style mb-3">
-            <h2>Hotel Details</h2><br>
+            <h2 class="text-center">Hotel Details</h2><br>
             <img src="<%= res.image.url %>" class="card-img-top show-img" alt="Image">
             <div class="card-body">
-               <h5 class="card-title"><b><%= res.title %></b></h5>
+               <h5 class="card-title text-center"><b><%= res.title %></b></h5>
                <p class="card-text"><large class="text-body"><%= res.description %></large></p>
                <p class="card-text"><large class="text-body">&#8377; <%= res.price ? res.price.toLocaleString("en-IN") : 'N/A' %> / Night</large></p>
                <p class="card-text"><large class="text-body"><%= res.location %></large></p>
                <p class="card-text"><large class="text-body"><%= res.country %></large></p>
                <br>
-               <div class="d-flex justify-content-between">
-                  <button class="btn btn-primary edit-btn"><a href="/edit/<%= res._id %>" class="text-white text-decoration-none">Edit</a></button>
+               <!-- Change: Align buttons to the left using justify-content-start -->
+               <div class="justify-content-start">
+                  <button class="btn btn-outline-success edit-btn" style="width: 13rem;">
+                       <a href="/edit/<%= res._id %>" class="text-black text-decoration-none">Edit</a>
+                  </button>
+                  <br>
                   <form method="POST" action="/delete/<%= res._id %>?_method=DELETE">
-                     <button class="btn btn-danger delete-btn" type="submit">Delete</button>
+                       <button class="btn btn-outline-danger delete-btn" type="submit">Delete</button>
                   </form>
-               </div>  
+               </div>
             </div>
          </div>
       </div>
    </div>
-</div>
 
-<!-- Optional Review Form Section -->
-<!-- <div class="review-form-container mt-4">
-    <form action="/listings/<%= res._id %>/review" method="POST">
-       <input type="text" placeholder="Enter Comment" name="comment" class="form-control mb-2">
-       <input type="number" placeholder="Rating" name="rating" class="form-control mb-2">
-       <button type="submit" class="btn btn-primary">Submit Comment</button>
-    </form>
-</div> -->
+   <hr>
+
+   <!-- Optional Review Form Section -->
+   <div class="row justify-content-center">
+      <div class="col-md-6 col-12">
+         <h3 class="text-center">Add Your Comment Here</h3>
+         <form class="row g-3 needs-validation" novalidate action="/listings/<%= res._id %>/review" method="POST">
+            <div class="col-12 position-relative">
+               <label for="comment" class="form-label">Enter Comment</label>
+               <textarea type="text" name="comment" class="form-control" rows="3" placeholder="Enter Comment" required></textarea>
+               <div class="valid-tooltip">Good!</div>
+               <div class="invalid-tooltip">Enter The Valid Comment!</div>
+            </div>
+
+            <br>
+
+            <div class="col-12 position-relative">
+               <label for="rating" class="form-label">Rating</label>
+               <input type="number" placeholder="Rating" name="rating" class="form-control mb-2" required>
+               <div class="valid-tooltip">Good!</div>
+               <div class="invalid-tooltip">Give Rating between 1 to 5 only!</div>
+            </div>
+
+            <br>
+
+            <div class="col-12 text-center">
+               <button class="btn btn-primary" type="submit">Submit form</button>
+            </div>
+         </form>
+      </div>
+   </div>
+
+   <hr>
+
+   <!-- Uncomment if Reviews Section is needed -->
+   <!-- <div class="reviews">
+         <h3>All Reviews</h3>
+         <p>Comment : <%=  %></p><br>
+         <p>Comment : <%=  %></p><br>
+   </div> -->
+</div>
