@@ -1,0 +1,45 @@
+<% layout('/layouts/biolerplate.ejs') %>
+<div class="row mt-3">
+    <h2 class="col-6 offset-3">SignUp On Wonderlist!</h2>
+    <div class="col-6 offset-3"><br>
+        <form action="/signup" method="POST" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input name="username" 
+                class="form-control" 
+                type="text" 
+                placeHolder="Enter Your Name" 
+                required><br>
+                <div class="valid-feedback">
+                    <b>Looks Good!</b>
+                 </div>
+             </div>
+             <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                name="email" 
+                class="form-control" 
+                type="email" 
+                placeHolder="Enter Your Email" 
+                required><br>
+                <div class="valid-feedback">
+                    <b>Looks Good!</b>
+                 </div>
+             </div>
+             <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input
+                name="password" 
+                class="form-control" 
+                type="password" 
+                placeHolder="Enter Your password" 
+                required><br>
+             </div>
+             <button class="btn btn-success">SignUp</button>
+
+        </form>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>

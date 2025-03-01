@@ -1,18 +1,22 @@
 let express=require("express");
 let app=express();
-let port=8080;
+let port=8070;
 let path=require("path");
-let Listing=require("./models/listing.js");
 var methodOverride = require('method-override');
 let ejsMate = require('ejs-mate');
-let WrapAsync = require("./utils/WrapAsync.js");
 let ExpressError = require("./utils/ExpressError.js");
-let SchemaValidation = require("./schema.js");
-let ReviewValidation =require("./schema.js");
+let session = require('express-session')
+let flash = require('connect-flash');
+let passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user.js");
 
-app.get("/",(req,resp)=>{
-  resp.send("I Am Root");
-});
+// required from routes folder
+const listingRouter = require("./routes/listings.js");
+const reviewsRouter = require("./routes/reviews.js");
+const userRouter = require("./routes/user.js");
+
+
 // Middlewares
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
@@ -25,7 +29,6 @@ app.engine('ejs', ejsMate);
 
 // getting-started.js
 const mongoose = require('mongoose');
-const Review = require("./models/review.js");
 main()
 .then((res)=>{
   console.log("DB Connected!")
@@ -35,136 +38,65 @@ async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/Hotel');
 }
 
-/* app.get("/listing",async (req,resp)=>{
-  let list=new Listing({
-   title:"My New Home",
-   description:"Have a Good Experience",
-   price:1500,
-   location:"ABR City,Chennai",
-   country:"India" 
-  });
-  await list.save();
-  resp.send("Data Inserted");
-}); */
-// Listing route
-app.get("/listings",WrapAsync(async (req,resp,next)=>{
-    let res= await Listing.find({});
-    resp.render("listings.ejs",{res});
-}));
-// Show Route
-app.get("/show/:id",WrapAsync(async (req,resp)=>{
-   let {id}=req.params;
-   let res= await Listing.findOne({_id:id});
-   resp.render("show.ejs",{res});
-}));
-
-
-// MIddleware for schema vaidation
-const validateSchema = (req, res, next) => {
-  const { error } = SchemaValidation.validate(req.body); // Destructure the error directly
-  if (error) {
-    // Map error details to provide clear messages
-    const errorMessage = error.details.map((el) => el.message).join(', ');
-    // Throw an ExpressError with the mapped error message
-    throw new ExpressError(400, errorMessage);
-  } else {
-    next(); // Proceed to the next middleware if validation passes
+// session creation
+let sessionOptions={
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie:{
+    expires:Date.now() + 7*24*60*60*1000,
+    maxAge:7*24*60*60*1000,
+    httpOnly:true
   }
 };
 
-// MIddleware for review vaidation
-const validateReview = (req, res, next) => {
-  const { error } = ReviewValidation.validate(req.body); // Destructure the error directly
-  if (error) {
-    // Map error details to provide clear messages
-    const errorMessage = error.details.map((el) => el.message).join(', ');
-    // Throw an ExpressError with the mapped error message
-    throw new ExpressError(400, errorMessage);
-  } else {
-      next(); // Proceed to the next middleware if validation passes
-  }
-};
-
-
-// New Route
-app.get("/new",(req,resp)=>{
-   resp.render("new.ejs");
+// Root Route
+app.get("/",(req,resp)=>{
+  resp.send("I Am Root");
 });
-// Add The details into database
-app.post(
-  '/listing/new',validateSchema,
-  WrapAsync(async (req, resp, next) => {
-    const { title, description, price, location, country, url } = req.body;
-    // Insert new listing into the database
-    await Listing.create({
-      title,
-      description,
-      price,
-      location,
-      country,
-      image: {
-        filename: 'default', // Default filename if not provided
-        url: url || 'https://via.placeholder.com/150', // Fallback to a placeholder URL if `url` is not provided
-      },
-    });
-    // Redirect to the listings page
-    resp.redirect('/listings');
-  })
-);
-// Edit Route
-app.get("/edit/:id",WrapAsync(async (req,resp)=>{
-   let {id}=req.params;
-   let edit_list=await Listing.find({_id:id});
-   resp.render("edit.ejs",{edit_list});
-}));
-// Update Route
-app.patch("/edit/:id/handle",validateSchema,
-  WrapAsync(async (req,resp)=>{
-   let {id}=req.params;
-   // let listing= req.body.listing
-   let {title,description,url,price,location,country}=req.body;
-    await Listing.findOneAndUpdate({_id:id},{
-      title:title,
-      description:description,
-      price:price,
-      location:location,
-      country:country,
-      image:{
-         url:url
-      }
-    });
-    resp.redirect("/listings")
-}));
-// Delete Operation
-app.delete("/delete/:id",WrapAsync(async (req,resp)=>{
-    let {id}=req.params;
-    await Listing.findOneAndDelete({_id:id});
-    resp.redirect("/listings");
-}));
-// Reviews
-app.post("/listings/:id/review",
-  validateReview,
-  WrapAsync(async (req,resp)=>{
-  let {id} = req.params;
-  let {comment,rating} = req.body;
-  // console.log(comment);
-  // console.log(rating);
- let hotel_data =await Listing.findById(`${id}`);
- let reviewAdd = new Review({
-   comment:comment,
-   rating:rating
- });
- hotel_data.reviews.push(reviewAdd);
- let res = await reviewAdd.save();
- let res2 = await hotel_data.save();
-//  console.log(res);
-//  console.log(res2);
-  //  resp.send("working fine!");
-   resp.redirect(`/show/${id}`);
-}));
 
+app.use(session(sessionOptions));
+app.use(flash());// flash usage
 
+// npm - passpost package for authentication
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
 
+// use static serialize and deserialize of model for passport session support
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// local variables middleware
+app.use((req,resp,next)=>{
+  // local variables for listings CRUD Operations
+  resp.locals.success=req.flash("success");
+  resp.locals.deletemsg=req.flash("deletemsg");
+  resp.locals.editmsg=req.flash("editmsg");
+  resp.locals.error = req.flash("error");
+  // local variables for review related operations
+  resp.locals.addReview=req.flash("addReview");
+  resp.locals.deleteReview=req.flash("deleteReview");
+  
+  // to access to the req.user in nav.ejs
+  resp.locals.currUser = req.user;
+  next();
+});
+
+// app.get("/demoUser",async (req,resp)=>{
+//    let fakerUser=new User({
+//       email:"abhi543it@gmail.com",
+//       username:"Abhi"
+//    });
+//    let registeredUser = await User.register(fakerUser,"hello1234");
+//    resp.send(registeredUser);
+// });
+
+// listings route
+// below line contains all the listings route
+app.use("/",listingRouter);
+app.use("/",reviewsRouter);
+app.use("/",userRouter);
 
 
 // Path Not Found

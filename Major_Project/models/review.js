@@ -11,9 +11,13 @@ let reviewsSchema = new Schema({
     createdAt:{
          type:Date,
          default:new Date()
+    },
+    author: {
+      type:Schema.Types.ObjectId,
+      ref:"User"
     }
 });
 
 // model for review
-let Review = mongoose.model("ReviewModel",reviewsSchema);
+let Review = mongoose.model("Review",reviewsSchema);
 module.exports = Review;

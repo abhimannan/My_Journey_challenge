@@ -35,9 +35,24 @@ let ListingSchema=new mongoose.Schema({
        type:Schema.Types.ObjectId,
        ref:"Review"
      }
-   ]
+   ],
+   owner: {
+    type:Schema.Types.ObjectId,
+    ref:"User"
+
+   }
 });
 
+
+// model for the listing
 let Listing=mongoose.model("Listing",ListingSchema);
+
+// middleware for deleting the reviews id in the listing
+/* ListingSchema.post("findOneAndDelete",async (Listing)=>{
+  if(Listing){
+     await Review.deleteMany({_id:Listing._id});
+  }
+});
+*/
 
 module.exports=Listing;
