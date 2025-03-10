@@ -1,7 +1,5 @@
 package Arrays_Part2;
 
-
-
 public class Problems {
     // function for find the sum largest number
     public static void maxSum(int[] arr){
