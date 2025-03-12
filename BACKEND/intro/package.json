@@ -1,0 +1,15 @@
+{
+  "name": "data",
+  "version": "1.0.0",
+  "main": "user.js",
+  "type":"module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Abhi Mannan",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "figlet": "^1.8.0"
+  }
+}
