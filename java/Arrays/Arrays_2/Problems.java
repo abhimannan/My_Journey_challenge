@@ -2,6 +2,7 @@ package Arrays_Part2;
 
 public class Problems {
     // function for find the sum largest number
+    /*
     public static void maxSum(int[] arr){
         int sum = 0;
         int max_Value = Integer.MIN_VALUE;
@@ -19,12 +20,11 @@ public class Problems {
             }
         }
         System.out.print("max value : "+max_Value);
-    }
+        */
+
     public static void main(String[] args) {
         
         int[] arr = {1,-2,6,-1,3};
-        maxSum(arr);
-        
-
-    }
+    }     
 }
+
