@@ -25,3 +25,28 @@ public class Main {
       
   }
 }
+
+// REVERSE THE ARRAY
+import java.util.*;
+
+public class Main {
+  public static void Reverse(int[] arr){
+      int temp;
+      int start = 0;
+      int end = arr.length-1;
+      
+      for(int i=start;i<=end;i++){
+          temp = arr[start];
+          arr[start] = arr[end];
+          arr[end] = temp;
+          start++;
+          end--;
+      }
+      System.out.println(Arrays.toString(arr));
+  }
+    public static void main(String[] args) {
+      int[] arr = {1,2,3,4,5};
+      System.out.println("Before swaping : "+Arrays.toString(arr));
+      Reverse(arr);
+  }
+}
