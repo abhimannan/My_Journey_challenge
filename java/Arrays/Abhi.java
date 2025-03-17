@@ -50,3 +50,24 @@ public class Main {
       Reverse(arr);
   }
 }
+
+//     MAX IN AN ARRAY
+import java.util.*;
+
+public class Main {
+  public static void Max(int[] arr){
+      int max = Integer.MIN_VALUE;
+      for(int i=0;i<arr.length;i++) {
+          if(arr[i]>max){
+             max = arr[i];
+          }
+      }
+      System.out.println("max value in array : "+max);
+      
+  }
+    public static void main(String[] args) {
+      int[] arr = {1,2,3,4,5};
+      Max(arr);
+      
+  }
+}
