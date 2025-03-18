@@ -1,0 +1,19 @@
+<%- include("includes/header.ejs") %>
+<body>
+    <div>
+        <h3>Student details</h3>
+        <% for(let i of data){ %>
+            <div class="students-data">
+                <p>Id : <%= i.id %></p>
+                <p>Name : <%= i.name %></p>
+                <p>Age : <%= i.age %></p>
+                <p>Email : <%= i.email %></p>
+                <p>Course : <%= i.course %></p>
+           </div>
+           <hr>
+        <% } %>
+
+    </div>
+    <%- include("includes/footer.ejs") %>
+</body>
+</html>

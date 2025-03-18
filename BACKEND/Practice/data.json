@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "name": "John Doe",
+      "age": 20,
+      "email": "johndoe@example.com",
+      "course": "Computer Science"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "age": 21,
+      "email": "janesmith@example.com",
+      "course": "Information Technology"
+    },
+    {
+      "id": 1,
+      "name": "John Doe",
+      "age": 20,
+      "email": "johndoe@example.com",
+      "course": "Computer Science"
+    },
+    {
+      "id": 3,
+      "name": "Alice Johnson",
+      "age": 22,
+      "email": "alicej@example.com",
+      "course": "Electronics"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "age": 21,
+      "email": "janesmith@example.com",
+      "course": "Information Technology"
+    }
+  ]
+  

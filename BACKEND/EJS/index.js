@@ -4,12 +4,12 @@ let port = 9595;
 let path = require("path");
 
 
-
 // middlewares for set the ejs files
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));// it will give EJS/views/home.ejs
-app.use(express.static(path.join(__dirname,"public")));
-app.use(express.static(path.join(__dirname,"/public/javascript")));
+app.use(express.static(path.join(__dirname,"/public/css")));
+app.use(express.static(path.join(__dirname,"/public/js")));
+
 
 app.get("/home",(req,resp)=>{
      resp.render("home.ejs");
@@ -30,10 +30,6 @@ app.get("/ig/:username",(req,resp)=>{
      
 }); 
 
-
-app.get("/instagram",(req,resp)=>{
-     
-});
 
 
 app.listen(port,()=>{
