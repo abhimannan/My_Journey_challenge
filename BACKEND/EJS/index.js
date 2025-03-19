@@ -9,6 +9,8 @@ app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));// it will give EJS/views/home.ejs
 app.use(express.static(path.join(__dirname,"/public/css")));
 app.use(express.static(path.join(__dirname,"/public/js")));
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
 
 app.get("/home",(req,resp)=>{
@@ -30,6 +32,23 @@ app.get("/ig/:username",(req,resp)=>{
      
 }); 
 
+// get register form
+app.get("/form",(req,resp)=>{
+      resp.render("student.ejs");
+});
+
+// get request : sent data through url
+app.get("/register",(req,resp)=>{
+      let {name,email} = req.query;
+      resp.send(name,email);
+
+});
+// post request  : sent data through body
+app.post("/newData",(req,resp)=>{
+      let {name,pass} = req.body;
+     resp.send("The new data is created!!");
+     console.log(`name is ${name} and password is ${pass}`);
+})
 
 
 app.listen(port,()=>{
