@@ -48,7 +48,9 @@ app.post("/newData",(req,resp)=>{
       let {name,pass} = req.body;
      resp.send("The new data is created!!");
      console.log(`name is ${name} and password is ${pass}`);
-})
+});
+
+
 
 
 app.listen(port,()=>{
