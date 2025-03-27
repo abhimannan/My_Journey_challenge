@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Posts</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <h3>All Posts</h3>
+        <br>
+        <div class="posts">
+            <% for(let i of data){ %>
+                <div class="singlepost">
+                    <h5><%= i.username %></h5>
+                    <h5><%= i.content %></h5>
+                    <br>
+                    <a href="/posts/<%= i.id %>"><button>View Post</button></a>
+                    <a href="/post/<%= i.id %>/edit"><button>Update Post</button></a>
+                    <form method="POST" action="/destroy/<%= i.id %>?_method=DELETE">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+                
+            <% } %>
+            
+        </div>
+        
+
+        <a href="/post/new"><button>Add Post</button></a>
+    </div>
+</body>
+</html>
