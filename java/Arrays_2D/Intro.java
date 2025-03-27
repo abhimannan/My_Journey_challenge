@@ -32,7 +32,7 @@ public class Intro {
         int[][] age = {
             {12,45,12},
             {54,25,14},
-            {63,25,20}
+            {0,25,20}
         };
         // Scanner sc = new Scanner(System.in);
         // input 
