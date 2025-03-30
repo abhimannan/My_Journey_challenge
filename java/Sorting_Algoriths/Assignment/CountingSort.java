@@ -19,7 +19,7 @@ public class CountingSort {
              while(count[i]>0) {
                  arr[j] = i;
                  j++;
-                 count[i]--;
+                 count[i]--; 
              }
          }
          System.out.println(Arrays.toString(arr));
