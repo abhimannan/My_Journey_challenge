@@ -19,7 +19,8 @@ app.use(express.static(path.join(__dirname,"/public/js")));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 // override with POST having ?_method=DELETE
-app.use(methodOverride('_method'));     
+app.use(methodOverride('_method'))   
+
 
 // database data
 let data = [
@@ -73,12 +74,27 @@ app.get("/edit/:id",(req,resp)=>{
       resp.render("editForm.ejs",{EditData});
 });
 
-app.put("/edit/:id/succ",(req,resp)=>{
-     let {id,task,Reward} = req.body;
-     console.log(id);
-
+app.patch("/edit/:id",(req,resp)=>{
+     let {id} = req.params;
+     let newtask = req.body.task;
+     let newReward = req.body.Reward;
+     let getData = data.find((d)=>{
+           if(d.id==id) {
+               return d;
+           }
+     });
+     getData.task = newtask;
+     getData.Reward = newReward;
+     resp.redirect("/home");
 
 });
+// delete data
+app.delete("/delete/:id",(req,resp)=>{
+       let {id} = req.params;
+       data = data.filter((d)=>d.id!=id);
+       resp.redirect("/home");
+});
+
 
 app.listen(port,(req,resp)=>{
      console.log(`The server is running at port ${port}`);

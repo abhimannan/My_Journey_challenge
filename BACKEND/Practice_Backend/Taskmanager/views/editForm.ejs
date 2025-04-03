@@ -9,7 +9,7 @@
     <h2>Edit The Task Here</h2>
     <br>
     <hr>
-    <form action="/edit/:id/succ?_method=PUT" method="POST">
+    <form action="/edit/<%= EditData.id %>?_method=PATCH" method="POST">
         <input type="text" name="task" value="<%= EditData.task %>"><br>
         <input type="text" name="Reward" value="<%= EditData.Reward %>"><br>
         <button type="submit">EDITED!!</button> 
