@@ -21,11 +21,9 @@ public class ShortestPath {
          // explore the type casting in java to understand it better
         int distance =(int)Math.sqrt(Math.pow(x,2) + Math.pow(y, 2));
         System.out.println("The Displacemnet is = "+distance);
-
-        
     }
     public static void main(String[] args) {
-        String directions = "NS";
+        String directions = "ABCD";
         Displacement(directions);
     }
 

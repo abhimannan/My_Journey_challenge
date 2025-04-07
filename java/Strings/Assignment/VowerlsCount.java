@@ -11,7 +11,7 @@ public class VowerlsCount {
             if(str.charAt(i)=='a' || str.charAt(i)=='e' || str.charAt(i)=='i' || str.charAt(i)=='o' || str.charAt(i)=='u') {
                 count++;
             }
-        }
+        } 
         System.out.println("No. of vowels = "+ count);
     }
 
