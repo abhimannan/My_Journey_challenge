@@ -26,6 +26,5 @@ public class Anagram {
     String str1 = "Cheater";
     String str2 = "Teacher";
     AnagramCheck(str1,str2);
-
     }
 }
