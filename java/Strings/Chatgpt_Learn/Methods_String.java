@@ -37,7 +37,9 @@ public class Methods_String {
         // replace('a','b')
         String m = mother.replace(mother, "Kumar");
         System.out.println(m);
-
+        System.out.println(" ".length());
+        System.out.println("abc".compareTo("abd"));
+        
 
     }
 }
