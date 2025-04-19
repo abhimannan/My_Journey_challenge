@@ -49,7 +49,7 @@ public class Practice {
         for(int i=0;i<nums.length();i++) {
             char ch = nums.charAt(i);
             System.out.println(ch);
-            if(ch<'0' || ch>'9') {
+            if(ch<'0' || ch>'9') { // based on the ASCII values it will work
                 return false;
             }
         }
