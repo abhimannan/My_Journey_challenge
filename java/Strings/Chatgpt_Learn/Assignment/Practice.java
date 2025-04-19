@@ -42,12 +42,29 @@ public class Practice {
         System.out.println("Vowels = "+ VowelsCount + "Consonents = "+ConsonentCount);
         
     }
+    public static boolean CheckOnlydigits(String nums) {
+        if(nums.length()==0) {
+            return false;
+        }
+        for(int i=0;i<nums.length();i++) {
+            char ch = nums.charAt(i);
+            System.out.println(ch);
+            if(ch<'0' || ch>'9') {
+                return false;
+            }
+        }
+        return true;
+    }
     public static void main(String[] args) {
         // StringBuilder sb = new StringBuilder("abcd");
         // Reverse(sb);
-        String name = "abba";
-        System.out.println(Poli(name));
-        CountVowels(name);
+        // String name = "abba";
+        // System.out.println(Poli(name));
+        // CountVowels(name);
+        // CountVowels(name);
+        String nums = "123";
+        System.out.println(CheckOnlydigits(nums));
 
     }
 }
+
