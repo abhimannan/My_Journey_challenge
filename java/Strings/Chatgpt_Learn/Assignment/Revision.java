@@ -39,13 +39,40 @@ public class Revision {
         }
         System.out.println(sb);
     }
+    public static boolean Polindrome(String name) {
+        int N = name.length();
+        for(int i=0;i<N/2;i++) {
+            char ch = name.charAt(i);
+            if(ch!=name.charAt(N-i-1)){
+                return false;
+            }
+        }
+        return true;
+    }
+    public static void Noofvowelscons(String name) {
+        int N = name.length();
+        int vowels = 0;
+        int consonents = 0;
+        for(int i=0;i<N;i++) {
+            char ch = name.charAt(i);
+            if(ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u') {
+                vowels++;
+            }
+            else{
+                consonents++;
+            }
+        }
+        System.out.println("Vowels = "+vowels + "Consonents = " + consonents);
+    }
     public static void main(String[] args) { 
         String s1 = "race";
         String s2 = "care";
         // Anagram(s1, s2);
         StringBuilder sb = new StringBuilder("abcd");
         Reverse(sb);
+        String name = "abba";
+        System.out.println(Polindrome(name));
+        Noofvowelscons(name);
 
-
-    }
+    } 
 }
