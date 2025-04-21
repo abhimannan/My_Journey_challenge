@@ -7,7 +7,7 @@ public class ReverseString {
             int start = i;
             int end = N-1-i;
             char startchar = sb.charAt(start);
-            char endchar = sb.charAt(end);
+            char endchar = sb.charAt(end); 
             sb.setCharAt(start, endchar);
             sb.setCharAt(end, startchar);
         }

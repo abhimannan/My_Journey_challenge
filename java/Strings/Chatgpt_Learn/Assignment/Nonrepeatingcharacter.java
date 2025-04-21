@@ -9,7 +9,7 @@ public class Nonrepeatingcharacter {
             char ch = s.charAt(i);
             if(ch >= 'a' && ch<='z') { // condition for ignore the spaces
                 frequency[ch-'a'] += 1;
-            }
+            } 
         }
         // finding the non repeating character
         for(int i=0;i<N;i++) {
@@ -21,7 +21,7 @@ public class Nonrepeatingcharacter {
         return -1;
     }
     public static void main(String[] args) { 
-        String s = "abahi";
+        String s = "abhi";
         int index = countNonrepeatingChars(s);
         System.out.println(index);
 
