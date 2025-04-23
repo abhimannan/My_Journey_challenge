@@ -3,6 +3,7 @@ package My_Journey_challenge.java.Strings.Chatgpt_Learn.Assignment;
 import java.util.Arrays;
 
 public class Revision {
+    // Anagram
     public static void Anagram(String s1,String s2) {
         // 1. convert into lower case
         s1.toLowerCase();
@@ -27,6 +28,7 @@ public class Revision {
             System.out.println("Not Anagram");
         }
     }
+    // Reverse a string
     public static void Reverse(StringBuilder sb) {
         int N = sb.length();
         for(int i=0;i<N/2;i++) {
@@ -39,6 +41,7 @@ public class Revision {
         }
         System.out.println(sb);
     }
+    // Polindrome
     public static boolean Polindrome(String name) {
         int N = name.length();
         for(int i=0;i<N/2;i++) {
@@ -49,6 +52,7 @@ public class Revision {
         }
         return true;
     }
+    // No. of vowels and consonents
     public static void Noofvowelscons(String name) {
         int N = name.length();
         int vowels = 0;
@@ -60,10 +64,38 @@ public class Revision {
             }
             else{
                 consonents++;
-            }
+            } 
         }
         System.out.println("Vowels = "+vowels + "Consonents = " + consonents);
     }
+    // check the string contains only digits
+    public static boolean checkDigit(String name) {
+        int N = name.length();
+        for(int i=0;i<N;i++) {
+           char ch = name.charAt(i);
+           if(ch<'0' || ch>'9') {
+               return false;
+           }
+        }
+        return true;
+   }
+   public static void Toggle(String name) {
+    StringBuilder result = new StringBuilder();
+        int N = name.length();
+        for(int i=0;i<N;i++) {
+            char ch = name.charAt(i);
+            if(Character.isLowerCase(ch)) {
+                result.append(Character.toUpperCase(ch));
+            }
+            else if(Character.isUpperCase(ch)) {
+                result.append(Character.toLowerCase(ch));
+            }
+            else{
+                result.append(ch);
+            }
+        }
+        System.out.println(result);
+   }
     public static void main(String[] args) { 
         String s1 = "race";
         String s2 = "care";
@@ -73,6 +105,7 @@ public class Revision {
         String name = "abba";
         System.out.println(Polindrome(name));
         Noofvowelscons(name);
-
+        name = "Abhi";
+        Toggle(name);
     } 
 }
