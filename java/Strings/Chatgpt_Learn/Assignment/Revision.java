@@ -96,16 +96,27 @@ public class Revision {
         }
         System.out.println(result);
    }
+   public static void ConvertCase(String name) {
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<name.length();i++) {
+            char ch = name.charAt(i);
+            if(ch>='a' || ch<='z') {
+                sb.append((char)(ch-32));
+            }
+        }
+        System.out.println(sb.toString());
+   }
     public static void main(String[] args) { 
         String s1 = "race";
         String s2 = "care";
         // Anagram(s1, s2);
         StringBuilder sb = new StringBuilder("abcd");
-        Reverse(sb);
+        // Reverse(sb);
         String name = "abba";
-        System.out.println(Polindrome(name));
-        Noofvowelscons(name);
-        name = "Abhi";
-        Toggle(name);
+        // System.out.println(Polindrome(name));
+        // Noofvowelscons(name);
+        name = "abhi";
+        // Toggle(name);
+        ConvertCase(name);
     } 
 }
