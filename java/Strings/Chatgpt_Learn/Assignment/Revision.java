@@ -96,16 +96,53 @@ public class Revision {
         }
         System.out.println(result);
    }
+   // lower to upper && upper to lower
    public static void ConvertCase(String name) {
-        StringBuilder sb = new StringBuilder();
-        for(int i=0;i<name.length();i++) {
-            char ch = name.charAt(i);
-            if(ch>='a' || ch<='z') {
+    StringBuilder sb = new StringBuilder();
+       int N = name.length();
+       for(int i=0;i<N;i++) {
+           char ch = name.charAt(i);
+           if(ch>='a' || ch<='Z') {
                 sb.append((char)(ch-32));
+           }
+           else{
+             sb.append(ch); 
+           }
+       }
+       System.out.println(sb);
+   }
+   // upper to lower
+    public static void Uppertolower(String x) {
+        StringBuilder sb = new StringBuilder();
+        int N = x.length();
+        for(int i=0;i<N;i++) {
+            char ch = x.charAt(i);
+            if(ch>='A' || ch<='Z') {
+                sb.append((char)(ch+32));
+            }
+            else{
+                sb.append(sb);
             }
         }
         System.out.println(sb.toString());
-   }
+    }
+    // Replace spaces with %20 (URLify a string) 
+    public static void URLify(String str) {
+        StringBuilder sb = new StringBuilder();
+        int N = str.length();
+        for(int i=0;i<N;i++) {
+            char ch = str.charAt(i);
+            if(ch==' '){
+                int index = str.indexOf(ch);
+                sb.setCharAt(index,"%20");
+            }
+            else{
+                sb.append(ch);
+            }
+        }
+        System.out.println(sb.toString());
+
+    }
     public static void main(String[] args) { 
         String s1 = "race";
         String s2 = "care";
@@ -115,8 +152,13 @@ public class Revision {
         String name = "abba";
         // System.out.println(Polindrome(name));
         // Noofvowelscons(name);
-        name = "abhi";
+        name = "Abhi";
         // Toggle(name);
-        ConvertCase(name);
+        // ConvertCase(name);
+        String x = "GEEThA";
+        // Uppertolower(x);
+        String str = "Mr john smith";
+        URLify(str);
+
     } 
 }
