@@ -1,5 +1,4 @@
 // Practicing the CRUD operations
-
 let express = require("express");
 let app = express();
 let port = 5252;
@@ -43,7 +42,6 @@ app.get("/home",(req,resp)=>{
 // form
 app.get("/add",(req,resp)=>{
       resp.render("create.ejs");
-
 });
 // adding the task
 app.post("/add",(req,resp)=>{
@@ -86,7 +84,6 @@ app.patch("/edit/:id",(req,resp)=>{
      getData.task = newtask;
      getData.Reward = newReward;
      resp.redirect("/home");
-
 });
 // delete data
 app.delete("/delete/:id",(req,resp)=>{

@@ -19,8 +19,7 @@ app.get("/students",(req,resp)=>{
      for(let i of data){
          console.log(i.name) 
      }
-
-})
+});
 
 app.listen(port,(req,resp)=>{
      console.log(`Server is running in ${port}`);
