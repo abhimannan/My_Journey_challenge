@@ -40,6 +40,7 @@ user1.save().then((res)=>{
 });*/
 
 // inserting multiple documents
+/*
 User.insertMany([
     {
     name : "geetha",
@@ -54,3 +55,48 @@ User.insertMany([
 ]).then((res)=>{
     console.log(res);
 });
+
+User.findById("68242f4a767299cc285dc13a").then((data)=>{
+    console.log(data);
+}).catch((err)=>{
+    console.log(err);
+});
+*/
+// User.deleteMany({}).then((result)=>{
+//     console.log("Deleted!");
+// });
+/*
+User.find({}).then((data)=>{
+    console.log(data);
+});
+User.updateOne({name : "kumar"},{name : "Vijay"},{new : true}).then((res)=>{
+    console.log("data updated!");
+});
+*/
+
+// User.findByIdAndUpdate("6826818c6c3ea5ee5193f8d0",{name : "Abhi"},{new : true}).
+// then((res)=>{
+//     console.log("updated!");
+// });
+/*
+let user1 = new User ({
+    name : "rajesh",
+    class : "CSE",
+    marks : 46
+});
+user1.save().then((data)=>{
+    console.log("user added");
+}).catch((e)=>{
+    console.log(e);
+});
+*/
+// User.findByIdAndUpdate("682685dad3ed803f8624cff0",{name: "abhi"},{new : true}).
+// then((result)=>{
+//     console.log(result);
+// }).catch((e)=>{
+//     console.log(e);
+// });
+
+// User.deleteMany({}).then((res)=>{
+//     console.log(res);
+// }).catch(e=>console.log(e));
