@@ -245,7 +245,7 @@ public class BasicPatterns {
                 System.out.println();
             }
             */
-            int n =6;
+            // int n =6;
             /*
             for(int i=1;i<=n;i++) {
                 for(int sp=1;sp<=(n-i);sp++) {
@@ -278,6 +278,7 @@ public class BasicPatterns {
                 System.out.println();
             }
             */
+            /*
             for(int i=1;i<n;i++) {
                 for(int sp=1;sp<=(n-i);sp++) {
                     System.out.print(" ");
@@ -288,6 +289,201 @@ public class BasicPatterns {
                 }
                 System.out.println();
             }
+            */
+            /*
+            int n = 4;
+            for(int i=1;i<=n;i++) {
+                // spaces
+                for(int sp=1;sp<=(n-i);sp++) {
+                    System.out.print(" ");
+                }
+                // print in decreasing order
+                for(int j=i;j>=1;j--) {
+                    System.out.print(j);
+                }
+                // print in increasing order
+                for(int j=2;j<=i;j++) {
+                    System.out.print(j);
+                }
+                System.out.println();
+            }
+            // lower part
+            for(int i=(n-1);i>=1;i--) {
+                // spaces
+                for(int sp=1;sp<=(n-i);sp++) {
+                    System.out.print(" ");
+                }
+                // decresing order
+                for(int j=i;j>=1;j--) {
+                    System.out.print(j);
+                }
+                // incresing order
+                for(int j=2;j<=i;j++) {
+                    System.out.print(j);
+                }
+                System.out.println();
+            }
+            */
+            /* 
+            int N = 5;
+            for(int i=N;i>=1;i--) {
+                for(int st=1;st<=i;st++) {
+                    System.out.print("*");
+                }
+                for(int sp=1;sp<=((N*2)-(i+i));sp++) {
+                    System.out.print(" ");
+                }
+                for(int st=1;st<=i;st++) {
+                    System.out.print("*");
+                }
+                System.out.println();
+            }
+            for(int i=1;i<=N;i++) {
+                // star
+                for(int st=1;st<=i;st++) {
+                    System.out.print("*");
+                }
+                // spaces
+                for(int sp=1;sp<=(N*2)-(i+i);sp++) {
+                    System.out.print(" ");
+                }
+                // stars
+                for(int st=1;st<=i;st++) {
+                    System.out.print("*");
+                }
+                System.out.println();
+            }
+            */
+            /*
+            int N = 5;
+            for(int i=1;i<=N;i++) {
+                for(int col=1;col<=(N-1);col++) {
+                    if(i==1 || col==(N-1) || i==N || col==1) {
+                        System.out.print("*");
+                    }
+                    else{
+                        System.out.print(" ");
+                    }
+                }
+                System.out.println();
+            }
+            */
+            /* 
+            int num = 1;
+            for(int i=1;i<=5;i++) {
+                for(int col=1;col<=i;col++) {
+                    System.out.print(num+" ");
+                    num++;
+                }
+                System.out.println();
+            }
+            */
+            /*
+            for(int i=1;i<=5;i++) {
+                for(int j=1;j<=i;j++) {
+                    if((i+j)%2==0) {
+                        System.out.print("1"+" ");
+                    }
+                    else{
+                        System.out.print("0"+" ");
+                    }
+                }
+                System.out.println();
+            }
+        */
+        /*
+        int N = 5;
+           for(int i=1;i<=N;i++) {
+              // spaces
+              for(int sp=1;sp<=(N-i);sp++) {
+                  System.out.print(" ");
+              }
+              // stars
+              for(int st=1;st<=N;st++) {
+                  if(i==1 || st==1 || i==N || st==N) {
+                      System.out.print("*");
+                  }
+                  else{
+                    System.out.print(" ");
+                  }
+              }
+              System.out.println();
+           }
+          */
+          /*
+          int N = 6;
+          for(int i=1;i<=N;i++) {
+              for(int j=N;j>=i;j--) {
+                System.out.print(i);
+              }
+              System.out.println();
+          }
+          */
+          /*
+          int N = 4;
+          int num = 1;
+          int temp_num = 20;
+          for(int i=4;i>=1;i--) {
+            // spaces
+            for(int sp=1;sp<=(N-i);sp++) {
+                System.out.print(" ");
+            }
+            // numbers
+            for(int j=1;j<=i;j++) {
+                System.out.print(num);
+                num++;
+            }
+
+            int start = temp_num-i+1;
+            for(int t=0;t<i;t++) {
+                System.out.print((start+t)+" ");
+            }
+            temp_num = temp_num-i;// update the temp_num for find next start value
+            System.out.println();
+          }
+        */
+        /*
+        for(int i=1;i<=5;i++) {
+            // spaces
+            for(int sp=1;sp<=(5-i);sp++) {
+                System.out.print(" ");
+            }
+            // stars
+            for(int j=1;j<=i;j++) {
+                System.out.print("*"+" ");
+            }
+            System.out.println();
+        }
+        for(int i=4;i>=1;i--) {
+            // sapces
+            for(int sp=1;sp<=(4-i+1);sp++) {
+                System.out.print(" ");
+            }
+            // stars
+            for(int st=1;st<=i;st++) {
+                System.out.print("*"+" ");
+            }
+            System.out.println();
+        }
+        */
+        int N = 5;
+        for(int i=1;i<=N;i++) {
+            // spaces
+            for(int sp=1;sp<=(N-i);sp++) {
+                System.out.print(" ");
+            }
+            // decreasing order
+            for(int h=i;h>=1;h--) {
+                System.out.print(h);
+            }
+            // increasing order
+            for(int l=2;l<=i;l++) {
+                System.out.print(l);
+            }
+            System.out.println();
+            
+        }
+
 
         }
     }
