@@ -466,6 +466,7 @@ public class BasicPatterns {
             System.out.println();
         }
         */
+        /*
         int N = 5;
         for(int i=1;i<=N;i++) {
             // spaces
@@ -483,7 +484,58 @@ public class BasicPatterns {
             System.out.println();
             
         }
+        */
+        /*
+        for(int i=0;i<5;i++) {
+            char ch = (char)('E'-i);
+            for(int j=0;j<=i;j++) {
+                System.out.print(ch+" ");
+                ch++;
+            }
+            System.out.println();
+        }
 
+        char ch = 'a';
+        boolean upper = false;
+        for(int i=1;i<=5;i++) {
+            for(int j=1;j<=i;j++) {
+                if(upper) {
+                    System.out.print(Character.toUpperCase(ch)+" ");
+                }
+                else{
+                    System.out.print(ch+"  ");
+                }
+                
+                ch++;
+                upper = !upper;
+            }      
+            System.out.println();     
+        }
+        */
+        /*
+        for(int i=5;i>=1;i--) {
+            char ch = (char)('A'+i);
+            for(int j=1;j<=i;j++) {
+                System.out.print((char)(ch-j)+" ");
+            }
+            System.out.println();
+        }
+        */
+        for(int i=1;i<=4;i++) {
+            // num
+            for(int num=1;num<=i;num++) {
+                System.out.print(num);
+            }
+            // spaces
+            for(int sp=1;sp<=2*(4-i);sp++) {
+                System.out.print(" ");
+            }
+            // num in increasing order
+            for(int j=i;j>=1;j--) {
+                System.out.print(j);
+            }
+            System.out.println();
+        }
 
         }
     }
