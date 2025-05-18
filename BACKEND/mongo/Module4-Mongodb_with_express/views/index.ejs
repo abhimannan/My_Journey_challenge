@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show route</title>
+    <link rel="stylesheet" href = "/style.css">
+</head>
+<body>
+    <h2>All Data</h2>
+    <div class="all-chats">
+        <a href="http://localhost:8080/new"><button>Create</button></a>
+        <% for(let i of data) { %>
+        <div class="chat">
+            <p>From : <%=  i.from %></p>
+            <p>To : <%= i.to %></p>
+            <p>To : <%= i.msg %></p>
+        </div>
+        <% } %>
+    </div>
+    
+</body>
+</html>
