@@ -6,6 +6,9 @@ let app = express();
 let port = 8080;
 let path = require("path");
 let Chat = require("./models/chats.js");
+let methodOverride = require('method-override')
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'))
 
 // mongoDB connection
 // getting-started.js
@@ -55,9 +58,45 @@ app.post("/newChat",(req,resp)=>{
         console.log(e);
     });
     resp.redirect("/index");
-
 });
 
+//  Chat.deleteMany({}).then((res)=>{
+//     console.log("deleted");
+//  }).catch((e)=>{
+//     console.log(e);
+//  });
+
+// show route
+app.get("/show/:id",async (req,resp)=>{
+    let {id} = req.params;
+    let data = await Chat.findById(id);
+    resp.render("show.ejs",{data});
+
+});
+// edit from render
+app.get("/edit/:id",async (req,resp)=>{
+    let {id} = req.params;
+    let edit_data =await Chat.findById(id);
+    resp.render("edit.ejs",{edit_data});
+
+});
+app.patch("/editRoute/:id",async (req,resp)=>{
+    let {id} = req.params;
+    let {from,to,msg} = req.body;
+      await Chat.findOneAndUpdate({_id : id},{
+        from : from,
+        to : to,
+        msg : msg
+    },{runValidator : true});
+    resp.redirect("http://localhost:8080/index");
+});
+
+// destroy route
+app.delete("/destroy/:id",async (req,resp)=>{
+    let {id} = req.params;
+    await Chat.findByIdAndDelete(id);
+    resp.redirect("http://localhost:8080/index");
+});
 
 app.get("/home",(req,resp)=>{
     resp.render("home.ejs");

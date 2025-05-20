@@ -15,6 +15,11 @@
             <p>From : <%=  i.from %></p>
             <p>To : <%= i.to %></p>
             <p>To : <%= i.msg %></p>
+            <a href="/show/<%= i._id %>"><button>Show</button></a>
+            <a href="/edit/<%= i._id %>"><button>Edit</button></a>
+            <form method="POST" action="/destroy/<%= i._id %>?_method=DELETE">
+                <button type="submit">Delete</button>
+            </form>
         </div>
         <% } %>
     </div>
