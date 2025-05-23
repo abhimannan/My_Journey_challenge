@@ -1,0 +1,14 @@
+<% layout("./layout/boilerplate.ejs") -%>
+<body>
+    <h3>Edit the details here</h3>
+    <form action="/listings/<%= data._id %>?_method=PATCH" method="POST">
+        <input type="text" name="listing[title]" value="<%= data.title %>"><br>
+        <input type="text" name="listing[image]" value="<%= data.image.url %>"><br>
+        <input type="text" name="listing[description]" value="<%= data.description %>"><br>
+        <input type="number" name="listing[price]" value="<%= data.price %>"><br>
+        <input type="text" name="listing[location]" value="<%= data.location %>"><br>
+        <input type="text" name="listing[country]" value="<%= data.country %>">
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>

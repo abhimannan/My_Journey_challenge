@@ -1,0 +1,16 @@
+<% layout("./layout/boilerplate.ejs") -%>
+<body>
+    <h3>The data</h3>
+    <div class="data">
+        <p>Title : <%= data.title %></p><br>
+        <p>Description : <%= data.title %></p><br>
+        <img src="<%= data.image.url %>">
+        <p>Price : <%= data.price %></p><br>
+        <p>Location : <%= data.location %></p><br>
+        <p>Country : <%= data.country %></p><br>
+    </div>
+    <br>
+    <form method="POST" action="/listings/<%= data._id %>?_method=DELETE">
+        <button type="submit">Delete</button>
+    </form>
+</body>
