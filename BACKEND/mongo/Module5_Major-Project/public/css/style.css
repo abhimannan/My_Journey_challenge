@@ -55,3 +55,11 @@ body {
     opacity: 0.3;
     align-items: flex-end;
 }
+/* show page */
+.show-img {
+    height: 30vh;
+}
+.btns {
+    display : flex;
+
+}

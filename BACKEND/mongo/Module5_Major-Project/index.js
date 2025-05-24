@@ -50,9 +50,8 @@ app.get("/listings",async (req,resp)=>{
 // show individual data
 app.get("/listings/:id",async (req,resp)=>{
     let {id} = req.params;
-    let data =await Listing.findById({_id : id});
-    console.log(data);
-    resp.render("show.ejs",{data});
+    let listing =await Listing.findById({_id : id});
+    resp.render("show.ejs",{listing});
     // resp.redirect("/listings");
 });
 
@@ -62,26 +61,27 @@ app.get("/Newlistings",(req,resp)=>{
 });
 // add new data
 app.post("/listings",async(req,resp)=>{
-    let listing = req.body.listing;
+    // let listing = req.body.listing;
     let Newdata = new Listing(req.body.listing);
     await Newdata.save();
     resp.redirect("/listings");
 });
 
 // eidt form
-app.get("/listings/:id/edit",async (req,resp)=>{
-    let {id} = req.params;
-    let data = await Listing.findOne({_id : id});
-    resp.render("edit.ejs",{data});
+app.get("/listings/:id/edit", async (req, resp) => {
+     let {id} = req.params;
+     let listing =await Listing.findById({_id : id});
+     resp.render("edit.ejs",{listing});
 });
+
 // update route
-app.patch("/listings/:id",async (req,resp)=>{
+app.put("/listings/:id", async (req, resp) => {
     let {id} = req.params;
-    // console.log(id);
-    let data = req.body.listing;
     await Listing.findByIdAndUpdate(id,{...req.body.listing});
     resp.redirect(`/listings/${id}`);
+
 });
+
 // destroy route
 app.delete("/listings/:id",async (req,resp)=>{
     let {id} = req.params;
