@@ -4,5 +4,7 @@ public class All_Operators {
         System.out.println((3 | 4));
         System.out.println((3 ^ 4));
         System.out.println((~3));
+        System.out.println((5<<2));
+        System.out.println((5>>2));
     }
 }
