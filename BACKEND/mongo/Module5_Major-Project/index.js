@@ -8,6 +8,7 @@ let methodOverride = require('method-override');
 let ejsmate = require('ejs-mate')
 let ExpressError = require("./utils/ExpressError.js");
 let Wrapasync = require("./utils/Wrapasync.js");
+let Listingschema = require("./schema.js");
 
 
 main().then((res)=>{
@@ -43,6 +44,18 @@ app.get("/testListing",async (req,resp)=>{
 });
 */
 
+// middleware for schema validation
+let listingValidation = (req,resp,next)=>{
+    let {error} = Listingschema.validate(req.body);
+       if(error) {
+        let errorMsg = error.details.map((el)=>el.message).join(",");
+           throw new ExpressError(400,errorMsg);
+       }
+       else{
+          next();
+       }
+}
+
 // show route
 app.get("/listings",Wrapasync(async (req,resp)=>{
     let data = await Listing.find({});
@@ -58,25 +71,29 @@ app.get("/listings/:id",Wrapasync(async (req,resp)=>{
 }));
 
 // new route
-app.get("/Newlistings",(req,resp)=>{
+app.get("/newlistings",(req,resp)=>{
     resp.render("new.ejs");
 });
 // add new data
-app.post("/listings",Wrapasync(async(req,resp,next)=>{
+app.post("/listings",
+    listingValidation,
+    Wrapasync(async(req,resp,next)=>{
         let Newdata = new Listing(req.body.listing);
         await Newdata.save();
         resp.redirect("/listings");
 }));
 
 // eidt form
-app.get("/edit/:id", Wrapasync(async (req, resp) => {
+app.get("/listings/:id/edit", Wrapasync(async (req, resp) => {
      let {id} = req.params;
      let listing =await Listing.findById(id);
      resp.render("edit.ejs",{listing});
 }));
 
 // update route
-app.put("/listings/:id", Wrapasync(async (req, resp) => {
+app.put("/listings/:id",
+    listingValidation,
+    Wrapasync(async (req, resp) => {
     let {id} = req.params;
     await Listing.findByIdAndUpdate(id,{...req.body.listing});
     resp.redirect(`/listings`);
@@ -108,7 +125,7 @@ app.all("*",(req,resp,next)=>{
 // error handling middlewares
 app.use((err,req,resp,next)=>{
     let {status=500,message="something went wrong"} = err;
-    resp.status(status).send(message);
+    resp.render("error.ejs",{err});
 });
 
 app.listen(port,(req,resp)=>{
