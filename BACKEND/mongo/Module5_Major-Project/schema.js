@@ -11,4 +11,17 @@ const Listingschema = Joi.object({
          country : Joi.string().required()
     }).required()
 });
+
+// review schema validation
+let reviewSchema = Joi.object({
+    reviews : Joi.object({
+        comment : Joi.string().required(),
+        rating : Joi.number().required().min(1).max(5)
+    }).required()
+});
+
+
+
+
 module.exports = Listingschema;
+module.exports = reviewSchema;

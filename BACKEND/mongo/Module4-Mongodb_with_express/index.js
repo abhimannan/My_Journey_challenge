@@ -130,8 +130,37 @@ app.delete("/destroy/:id",async (req,resp,next)=>{
     }
 });
 
+app.get("/getData/:id",async (req,resp,next)=>{
+    let {id} = req.params;
+    let post = await Chat.findById(id);
+    if(!post) {
+        next(ExpressError(500,"post not found"));
+    }
+    resp.send(post);
+});
+
+
+
+
+
+
+
 app.get("/home",(req,resp)=>{
     resp.render("home.ejs");
+});
+
+// mongoose error handling
+const handleer = (err,req,resp,next) =>{
+    console.log("please follow rules");
+    return err;
+}
+
+app.use((err,req,resp,next)=>{
+    // console.log(err.name);
+    if(err.name === "ValidationError") {
+        err = handleer(err);
+    }
+    next(err);
 });
 
 // default error handler
