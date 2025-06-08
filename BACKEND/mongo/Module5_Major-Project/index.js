@@ -9,9 +9,12 @@ let methodOverride = require('method-override');
 let ejsmate = require('ejs-mate');
 let ExpressError = require("./utils/ExpressError.js");
 let Wrapasync = require("./utils/Wrapasync.js");
-let Listingschema = require("./schema.js");
-let reviewSchema = require("./schema.js");
 
+
+
+
+let listing = require("./routes/listing.js");
+let review = require("./routes/review.js");
 
 
 main().then((res)=>{
@@ -47,104 +50,10 @@ app.get("/testListing",async (req,resp)=>{
 });
 */
 
-// middleware for schema validation
-let listingValidation = (req,resp,next)=>{
-    let {error} = Listingschema.validate(req.body);
-       if(error) {
-        let errorMsg = error.details.map((el)=>el.message).join(",");
-           throw new ExpressError(400,errorMsg);
-       }
-       else{
-          next();
-       }
-}
-// review validation
-const reviewValidation = (req, res, next) => {
-  const { error } = reviewSchema.validate(req.body, { abortEarly: false });
 
-  if (error) {
-    const errorMsg = error.details.map(el => el.message).join(", ");
-    return next(new ExpressError(400, errorMsg));
-  }
-  next();
-};
-
-
-
-// show route
-app.get("/listings",Wrapasync(async (req,resp)=>{
-    let data = await Listing.find({});
-    resp.render("index.ejs",{data});
-}));
-
-// show individual data
-app.get("/listings/:id",Wrapasync(async (req,resp)=>{
-    let {id} = req.params;
-    let listing =await Listing.findById({_id : id}).populate("reviews");
-    resp.render("show.ejs",{listing});
-    // resp.redirect("/listings");
-}));
-
-// new route
-app.get("/newlistings",(req,resp)=>{
-    resp.render("new.ejs");
-});
-// add new data
-app.post("/listings",
-    listingValidation,
-    Wrapasync(async(req,resp,next)=>{
-        let Newdata = new Listing(req.body.listing);
-        await Newdata.save();
-        resp.redirect("/listings");
-}));
-
-// eidt form
-app.get("/listings/:id/edit", Wrapasync(async (req, resp) => {
-     let {id} = req.params;
-     let listing =await Listing.findById(id);
-     resp.render("edit.ejs",{listing});
-}));
-
-// update route
-app.put("/listings/:id",
-    listingValidation,
-    Wrapasync(async (req, resp) => {
-    let {id} = req.params;
-    await Listing.findByIdAndUpdate(id,{...req.body.listing});
-    resp.redirect(`/listings`);
-}));
-
-// destroy route
-app.delete("/listings/:id",Wrapasync(async (req,resp)=>{
-    let {id} = req.params;
-    let deleteListing = await Listing.findByIdAndDelete(id);
-    // console.log(deleteListing);
-    resp.redirect("/listings");
-}));
-
-// add review route
-app.post("/listings/:id/reviews",
-    reviewValidation,
-    Wrapasync(async(req,resp)=>{
-    let {id} = req.params;
-    let listing = await Listing.findById(id);
-    let newReview = new Review(req.body.reviews);
-    listing.reviews.push(newReview);
-    await newReview.save();
-    await listing.save();
-    resp.redirect(`/listings/${id}`);
-}));
-
-// delete review
-app.delete("/listings/:id/reviews/:reviewsId",Wrapasync(async(req,resp)=>{
-    let {id,reviewsId} = req.params;
-    console.log(id);
-    console.log(reviewsId);
-    await Listing.findByIdAndUpdate(id,{$pull : {reviews : reviewsId}});
-    await Review.findByIdAndDelete(reviewsId);
-
-    resp.redirect(`/listings/${id}`);
-}));
+// use all the listing routes
+app.use("/listings",listing);
+app.use("/listings/:id/reviews",review);
 
 
 
