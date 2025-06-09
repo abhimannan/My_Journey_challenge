@@ -9,8 +9,8 @@ let methodOverride = require('method-override');
 let ejsmate = require('ejs-mate');
 let ExpressError = require("./utils/ExpressError.js");
 let Wrapasync = require("./utils/Wrapasync.js");
-
-
+let session = require('express-session')
+let flash = require('connect-flash');
 
 
 let listing = require("./routes/listing.js");
@@ -33,7 +33,30 @@ app.use(express.json());
 app.use(methodOverride('_method'));
 app.engine('ejs', ejsmate);
 app.use(express.static(path.join(__dirname,"/public")));
+let sessionOptions = {
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie : {
+    expires : Date.now() + 7 * 24 * 60 * 60 * 1000,
+    maxAge : 7 * 24 * 60 * 60 * 1000,
+    httpOnly : true
+  }
+};
 
+app.get("/home",(req,resp)=>{
+    resp.send("Home Route");
+});
+
+app.use(session(sessionOptions));
+app.use(flash());
+
+// middleware for flash messages
+app.use((req,resp,next)=>{
+    resp.locals.successMeg = req.flash("success");
+    resp.locals.errorMeg = req.flash("error");
+    next();
+});
 
 /*
 app.get("/testListing",async (req,resp)=>{
@@ -56,10 +79,6 @@ app.use("/listings",listing);
 app.use("/listings/:id/reviews",review);
 
 
-
-app.get("/home",(req,resp)=>{
-    resp.send("Home Route");
-});
 
 // if the route is not matched
 app.all("*",(req,resp,next)=>{

@@ -36,6 +36,7 @@ router.post("/",
     Wrapasync(async(req,resp,next)=>{
         let Newdata = new Listing(req.body.listing);
         await Newdata.save();
+        req.flash("success","New Listing is Created!");
         resp.redirect("/listings");
 }));
 
@@ -43,16 +44,25 @@ router.post("/",
 router.get("/:id",Wrapasync(async (req,resp)=>{
     let {id} = req.params;
     let listing =await Listing.findById({_id : id}).populate("reviews");
+    if(!listing) {
+        req.flash("error","sorry! The Listing Your Requested for doesn't existed!");
+        resp.redirect("/listings");
+    }
     resp.render("show.ejs",{listing});
     // resp.redirect("/listings");
 }));
 
 
 // eidt form
-router.get("/:id/edit", Wrapasync(async (req, resp) => {
+router.get("/:id/edit",
+     Wrapasync(async (req, resp) => {
      let {id} = req.params;
      let listing =await Listing.findById(id);
-     resp.render("edit.ejs",{listing});
+      if(!listing) {
+        req.flash("error","sorry! The Listing Your Requested for doesn't existed!");
+        resp.redirect("/listings");
+      }  
+      resp.render("edit.ejs",{listing});
 }));
 
 // update route
@@ -61,6 +71,7 @@ router.put("/:id",
     Wrapasync(async (req, resp) => {
     let {id} = req.params;
     await Listing.findByIdAndUpdate(id,{...req.body.listing});
+    req.flash("success","Listing is Updated!");
     resp.redirect(`/listings`);
 }));
 
@@ -68,6 +79,7 @@ router.put("/:id",
 router.delete("/:id",Wrapasync(async (req,resp)=>{
     let {id} = req.params;
     await Listing.findByIdAndDelete(id);
+    req.flash("success","Listing is Deleted!");
     resp.redirect("/listings");
 }));
 
