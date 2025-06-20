@@ -9,12 +9,17 @@ let methodOverride = require('method-override');
 let ejsmate = require('ejs-mate');
 let ExpressError = require("./utils/ExpressError.js");
 let Wrapasync = require("./utils/Wrapasync.js");
-let session = require('express-session')
+let session = require('express-session');
 let flash = require('connect-flash');
+let passport = require("passport");
+let LocalStrategy = require("passport-local");
+const User = require("./models/user.js");
 
 
-let listing = require("./routes/listing.js");
-let review = require("./routes/review.js");
+// all routes
+let listingRouter = require("./routes/listing.js");
+let reviewRouter = require("./routes/review.js");
+let userRouter = require("./routes/user.js");
 
 
 main().then((res)=>{
@@ -51,6 +56,16 @@ app.get("/home",(req,resp)=>{
 app.use(session(sessionOptions));
 app.use(flash());
 
+// middlewares from the "passport" package
+app.use(passport.initialize());
+app.use(passport.session());
+
+// these below lines from the npm passport-local-mongoose
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
 // middleware for flash messages
 app.use((req,resp,next)=>{
     resp.locals.successMeg = req.flash("success");
@@ -74,9 +89,21 @@ app.get("/testListing",async (req,resp)=>{
 */
 
 
+/*
+app.get("/demouser",async (req,resp)=>{
+    let fakeUser = new User({
+        email : "abhi543it@gmail.com",
+        username : "Abhi"
+    });
+    let registerUser = await User.register(fakeUser,"1234");
+    resp.send(registerUser);
+});
+*/
+
 // use all the listing routes
-app.use("/listings",listing);
-app.use("/listings/:id/reviews",review);
+app.use("/listings",listingRouter);
+app.use("/listings/:id/reviews",reviewRouter);
+app.use("/",userRouter);
 
 
 
