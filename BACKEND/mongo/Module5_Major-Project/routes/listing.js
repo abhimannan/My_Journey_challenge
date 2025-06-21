@@ -4,7 +4,9 @@ let Wrapasync = require("../utils/Wrapasync.js");
 let Listing = require("../models/listing.js");
 let Review = require("../models/review.js");
 let ExpressError = require("../utils/ExpressError.js");
-let {listingSchema} = require("../schema.js")
+let {listingSchema} = require("../schema.js");
+let { isLoggedIn } = require("../middlewares.js");
+
 
 // middleware for schema validation
 let listingValidation = (req,resp,next)=>{
@@ -26,12 +28,15 @@ router.get("/",Wrapasync(async (req,resp)=>{
 }));
 
 // new route
-router.get("/new",(req,resp)=>{
+router.get("/new",
+    isLoggedIn,
+    (req,resp)=>{                                   
     resp.render("new.ejs");
 });
 
 // add new data
 router.post("/",
+    isLoggedIn,
     listingValidation,
     Wrapasync(async(req,resp,next)=>{
         let Newdata = new Listing(req.body.listing);
@@ -55,6 +60,7 @@ router.get("/:id",Wrapasync(async (req,resp)=>{
 
 // eidt form
 router.get("/:id/edit",
+     isLoggedIn,
      Wrapasync(async (req, resp) => {
      let {id} = req.params;
      let listing =await Listing.findById(id);
@@ -67,6 +73,7 @@ router.get("/:id/edit",
 
 // update route
 router.put("/:id",
+    isLoggedIn,
     listingValidation,
     Wrapasync(async (req, resp) => {
     let {id} = req.params;
@@ -76,7 +83,9 @@ router.put("/:id",
 }));
 
 // destroy route
-router.delete("/:id",Wrapasync(async (req,resp)=>{
+router.delete("/:id",
+    isLoggedIn,
+    Wrapasync(async (req,resp)=>{
     let {id} = req.params;
     await Listing.findByIdAndDelete(id);
     req.flash("success","Listing is Deleted!");
