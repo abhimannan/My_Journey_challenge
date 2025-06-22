@@ -12,8 +12,16 @@ async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/Wonderlust');
 }
 
-const initDB =async()=>{
+const initDB = async () => {
     await Listing.deleteMany({});
+
+    getdata.data = getdata.data.map((obj) => ({
+        ...obj,
+        owner: "685619d6e5e8e49de67c412a"
+    }));
+
     await Listing.insertMany(getdata.data);
-}
+};
+
 initDB();
+

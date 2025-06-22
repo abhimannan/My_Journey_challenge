@@ -5,20 +5,10 @@ let Listing = require("../models/listing.js");
 let Review = require("../models/review.js");
 let ExpressError = require("../utils/ExpressError.js");
 let {listingSchema} = require("../schema.js");
-let { isLoggedIn } = require("../middlewares.js");
+let { isLoggedIn,isOwner,listingValidation } = require("../middlewares.js");
 
 
-// middleware for schema validation
-let listingValidation = (req,resp,next)=>{
-    let {error} = listingSchema.validate(req.body);
-       if(error) {
-        let errorMsg = error.details.map((el)=>el.message).join(",");
-           throw new ExpressError(400,errorMsg);
-       }
-       else{
-          next();
-       }
-}
+
 
 // listing routes
 // show route
@@ -40,6 +30,8 @@ router.post("/",
     listingValidation,
     Wrapasync(async(req,resp,next)=>{
         let Newdata = new Listing(req.body.listing);
+        console.log(req.user);
+        Newdata.owner = req.user._id;
         await Newdata.save();
         req.flash("success","New Listing is Created!");
         resp.redirect("/listings");
@@ -48,19 +40,21 @@ router.post("/",
 // show individual data
 router.get("/:id",Wrapasync(async (req,resp)=>{
     let {id} = req.params;
-    let listing =await Listing.findById({_id : id}).populate("reviews");
+    let listing =await Listing.findById(id)
+        .populate("reviews")
+        .populate("owner");
     if(!listing) {
         req.flash("error","sorry! The Listing Your Requested for doesn't existed!");
         resp.redirect("/listings");
     }
+    console.log(listing.owner);
     resp.render("show.ejs",{listing});
-    // resp.redirect("/listings");
 }));
-
 
 // eidt form
 router.get("/:id/edit",
      isLoggedIn,
+     isOwner,
      Wrapasync(async (req, resp) => {
      let {id} = req.params;
      let listing =await Listing.findById(id);
@@ -74,6 +68,7 @@ router.get("/:id/edit",
 // update route
 router.put("/:id",
     isLoggedIn,
+    isOwner,
     listingValidation,
     Wrapasync(async (req, resp) => {
     let {id} = req.params;
@@ -85,6 +80,7 @@ router.put("/:id",
 // destroy route
 router.delete("/:id",
     isLoggedIn,
+    isOwner,
     Wrapasync(async (req,resp)=>{
     let {id} = req.params;
     await Listing.findByIdAndDelete(id);

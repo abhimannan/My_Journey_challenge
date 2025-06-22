@@ -4,27 +4,19 @@ let Wrapasync = require("../utils/Wrapasync.js");
 let Listing = require("../models/listing.js");
 let Review = require("../models/review.js");
 let {reviewSchema} = require("../schema.js");
-
-
-// review validation
-const reviewValidation = (req, res, next) => {
-  const { error } = reviewSchema.validate(req.body, { abortEarly: false });
-
-  if (error) {
-    const errorMsg = error.details.map(el => el.message).join(", ");
-    return next(new ExpressError(400, errorMsg));
-  }
-  next();
-};
+let { reviewValidation, isLoggedIn } = require("../middlewares.js");
 
 // all the reviews route
 // add review route
 router.post("/",
+    isLoggedIn,
     reviewValidation,
     Wrapasync(async(req,resp)=>{
     let {id} = req.params;
     let listing = await Listing.findById(id);
     let newReview = new Review(req.body.review);
+    newReview.author = req.user._id;
+    console.log(newReview);
     listing.reviews.push(newReview);
     await newReview.save();
     await listing.save();
