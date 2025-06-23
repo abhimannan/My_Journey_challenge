@@ -68,7 +68,7 @@
           <% for(let reviews of listing.reviews) { %>
             <div class="card col-5 ms-3 mb-2">
               <div class="card-body">
-                <h5 class="card-title">Jan Doe</h5> <!-- You might want to change this to the reviewer's name -->
+                <h5 class="card-title">@<%= reviews.author.username %></h5> <!-- You might want to change this to the reviewer's name -->
                 <p class="card-text"><%= reviews.comment %></p>
                 <p class="card-text">Rating: <%= reviews.rating %> stars</p>
                 <form action="/listings/<%= listing._id %>/reviews/<%= reviews._id %>?_method=DELETE"

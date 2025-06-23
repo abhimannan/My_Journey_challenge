@@ -5,36 +5,19 @@ let Wrapasync =require("../utils/Wrapasync.js");
 let passport = require("passport")
 let { saveRedirectUrl } = require("../middlewares.js");
 
-// signup routes
-router.get("/signup",(req,resp)=>{
-    resp.render("users/signup.ejs");
-});
+// requiring users controllers
+let UsersControllers = require("../controllers/users.js");
 
-router.post("/signup",Wrapasync(async(req,resp)=>{
-    try {
-        let {username,email,password} = req.body;
-    let newUser = new User({email,username});
-    let registerUser = await User.register(newUser,password);
-    // console.log(registerUser);
-    req.login(registerUser,(err)=>{
-        if(err) {
-            return next(err);
-        }
-        req.flash("success","Welcome To Wanderlust!");
-        resp.redirect("/listings");
-    });
-    }
-    catch(e) {
-        req.flash("error",e.message);
-        resp.redirect("/signup");
-    }
-}));
+// signup routes
+router.get("/signup",UsersControllers.renderUserSignup);
+
+// add new user
+router.post("/signup",Wrapasync(UsersControllers.addNewUser));
 
 // login routes
-router.get("/login",(req,resp)=>{
-    resp.render("users/login.ejs")
-});
+router.get("/login",UsersControllers.renderLogin);
 
+// login authentication
 router.post(
     "/login",
     saveRedirectUrl,
@@ -43,22 +26,10 @@ router.post(
        failureRedirect: '/login',
        failureFlash : true
      }),
-    async(req,resp)=>{
-        req.flash("success","Welocome Back To Wanderlust!");
-        let redirectURL = resp.locals.redirectURL || "/listings";
-        resp.redirect(redirectURL);
-});
+    UsersControllers.loginAuthentication);
 
 // logout route
-router.get("/logout",(req,resp,next)=>{
-    req.logOut((err)=>{
-        if(err) {
-            return next(err);
-        }
-        req.flash("success","You are logged out!");
-        resp.redirect("/listings");
-    });
-});
+router.get("/logout",UsersControllers.logOut);
 
 
 module.exports = router;

@@ -7,85 +7,45 @@ let ExpressError = require("../utils/ExpressError.js");
 let {listingSchema} = require("../schema.js");
 let { isLoggedIn,isOwner,listingValidation } = require("../middlewares.js");
 
-
-
+// requiring controllers
+let ListingControllers = require("../controllers/listings.js");
 
 // listing routes
-// show route
-router.get("/",Wrapasync(async (req,resp)=>{
-    let data = await Listing.find({});
-    resp.render("index.ejs",{data});
-}));
+// show route : index route
+router.get("/",Wrapasync(ListingControllers.showCallback));
 
 // new route
 router.get("/new",
     isLoggedIn,
-    (req,resp)=>{                                   
-    resp.render("new.ejs");
-});
+    ListingControllers.renderNewForm
+    );
 
 // add new data
 router.post("/",
     isLoggedIn,
     listingValidation,
-    Wrapasync(async(req,resp,next)=>{
-        let Newdata = new Listing(req.body.listing);
-        console.log(req.user);
-        Newdata.owner = req.user._id;
-        await Newdata.save();
-        req.flash("success","New Listing is Created!");
-        resp.redirect("/listings");
-}));
+    Wrapasync(ListingControllers.addNewData));
 
 // show individual data
-router.get("/:id",Wrapasync(async (req,resp)=>{
-    let {id} = req.params;
-    let listing =await Listing.findById(id)
-        .populate("reviews")
-        .populate("owner");
-    if(!listing) {
-        req.flash("error","sorry! The Listing Your Requested for doesn't existed!");
-        resp.redirect("/listings");
-    }
-    console.log(listing.owner);
-    resp.render("show.ejs",{listing});
-}));
+router.get("/:id",Wrapasync(ListingControllers.showIndividualData));
 
 // eidt form
 router.get("/:id/edit",
      isLoggedIn,
      isOwner,
-     Wrapasync(async (req, resp) => {
-     let {id} = req.params;
-     let listing =await Listing.findById(id);
-      if(!listing) {
-        req.flash("error","sorry! The Listing Your Requested for doesn't existed!");
-        resp.redirect("/listings");
-      }  
-      resp.render("edit.ejs",{listing});
-}));
+     Wrapasync(ListingControllers.editListing));
 
 // update route
 router.put("/:id",
     isLoggedIn,
     isOwner,
     listingValidation,
-    Wrapasync(async (req, resp) => {
-    let {id} = req.params;
-    await Listing.findByIdAndUpdate(id,{...req.body.listing});
-    req.flash("success","Listing is Updated!");
-    resp.redirect(`/listings`);
-}));
+    Wrapasync(ListingControllers.editListing));
 
 // destroy route
 router.delete("/:id",
     isLoggedIn,
     isOwner,
-    Wrapasync(async (req,resp)=>{
-    let {id} = req.params;
-    await Listing.findByIdAndDelete(id);
-    req.flash("success","Listing is Deleted!");
-    resp.redirect("/listings");
-}));
+    Wrapasync(ListingControllers.destroyListings));
 
 module.exports = router;
