@@ -8,18 +8,17 @@ let { saveRedirectUrl } = require("../middlewares.js");
 // requiring users controllers
 let UsersControllers = require("../controllers/users.js");
 
-// signup routes
-router.get("/signup",UsersControllers.renderUserSignup);
+// signup routes , add new user
+router
+    .route("/signup")
+    .get(UsersControllers.renderUserSignup)
+    .post(Wrapasync(UsersControllers.addNewUser));
 
-// add new user
-router.post("/signup",Wrapasync(UsersControllers.addNewUser));
-
-// login routes
-router.get("/login",UsersControllers.renderLogin);
-
-// login authentication
-router.post(
-    "/login",
+// login routes , login authentication
+router
+    .route("/login")
+    .get(UsersControllers.renderLogin)
+    .post(
     saveRedirectUrl,
     passport.authenticate('local',
      {

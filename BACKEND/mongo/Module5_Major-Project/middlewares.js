@@ -65,7 +65,5 @@ module.exports.isReviewAuthor = async(req,resp,next) =>{
     next();
 }
 
-//   if (!review) {
-//         req.flash('error', 'Review not found');
-//         return resp.redirect(`/listings/${id}`);
-//     }
+
+

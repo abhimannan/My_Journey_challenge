@@ -1,3 +1,8 @@
+if(process.env.NODE_ENV != "production") {
+ require('dotenv').config();
+}
+// console.log(process.env.CLOUD_API_SECRETE);
+
 let express = require("express");
 let app = express();
 let port = 8080;
@@ -56,7 +61,7 @@ app.get("/home",(req,resp)=>{
 app.use(session(sessionOptions));
 app.use(flash());
 
-// middlewares from the "passport" package
+// middlewares from the "passport" package - authentication
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -119,7 +124,7 @@ app.all("*",(req,resp,next)=>{
 //   next();
 // });
 
-// error handling middlewares
+// Default error handling middlewares
 app.use((err,req,resp,next)=>{
     let {status=500,message="something went wrong"} = err;
     resp.render("error.ejs",{err});

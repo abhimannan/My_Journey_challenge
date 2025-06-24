@@ -36,7 +36,7 @@ module.exports.showIndividualData = async (req,resp)=>{
     resp.render("show.ejs",{listing});
 }
 
-module.exports.editListing = async (req, resp) => {
+module.exports.rendereditListingform = async (req, resp) => {
      let {id} = req.params;
      let listing =await Listing.findById(id);
       if(!listing) {
