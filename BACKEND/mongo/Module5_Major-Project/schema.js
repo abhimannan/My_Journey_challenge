@@ -1,4 +1,5 @@
 const Joi = require('joi');
+// backend validation
 
 // Listing schema
 const listingSchema = Joi.object({

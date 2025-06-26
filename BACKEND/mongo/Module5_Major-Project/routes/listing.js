@@ -20,14 +20,11 @@ let ListingControllers = require("../controllers/listings.js");
 router
     .route("/")
     .get(Wrapasync(ListingControllers.showCallback))
-    // .post(
-    // isLoggedIn,
-    // listingValidation,
-    // Wrapasync(ListingControllers.addNewData));
-    .post(upload.single('listing[image]') , (req,resp)=>{
-        resp.send(req.file);
-    });
-
+    .post(
+    isLoggedIn,
+    upload.single('listing[image]') ,
+    listingValidation,
+    Wrapasync(ListingControllers.addNewData));
 // new route
 router.get("/new",
     isLoggedIn,
@@ -41,6 +38,7 @@ router.get("/new",
     .put(
     isLoggedIn,
     isOwner,
+    upload.single('listing[image]') ,
     listingValidation,
     Wrapasync(ListingControllers.editListing))
     .delete(

@@ -1,3 +1,5 @@
+// this file is used to access the cloudinary cloud for storing the data in cloud
+
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
@@ -13,7 +15,7 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'wonderlust_DEV',
-    allowed_formats : ["png","jpg","jpeg"],
+    allowredFormats : ["png","jpg","jpeg"],
   },
 });
 

@@ -8,8 +8,8 @@ module.exports.renderUserSignup = (req,resp)=>{
 module.exports.addNewUser = async(req,resp)=>{
     try {
         let {username,email,password} = req.body;
-    let newUser = new User({email,username});
-    let registerUser = await User.register(newUser,password);
+        let newUser = new User({email,username});
+        let registerUser = await User.register(newUser,password);
     // console.log(registerUser);
     req.login(registerUser,(err)=>{
         if(err) {
