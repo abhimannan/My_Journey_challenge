@@ -13,26 +13,49 @@ module.exports.renderNewForm = (req,resp)=>{
     resp.render("new.ejs");
 }
 
-module.exports.addNewData = async(req,resp,next)=>{
-    let response = await geocodingClient.forwardGeocode({
-    query: req.body.listing.location,   
-    limit: 1,
-    })
-    .send()
-  
-    console.log(response.body.features[0].geometry);
-    resp.send("Done!");
+module.exports.addNewData = async (req, resp, next) => {
+  try {
+    if (!req.body.listing || !req.body.listing.location) {
+      req.flash("error", "Location is required!");
+      return resp.redirect("/listings/new");
+    }
 
-    let url = req.file.path;
-    let filename = req.file.filename;
-        let Newdata = new Listing(req.body.listing);
-        // console.log(req.user);
-        Newdata.owner = req.user._id;
-        Newdata.image = {url , filename};
-        await Newdata.save();
-        req.flash("success","New Listing is Created!");
-        resp.redirect("/listings");
-}
+    const response = await geocodingClient
+      .forwardGeocode({
+        query: req.body.listing.location,
+        limit: 1,
+      })
+      .send();
+
+    const geoData = response.body.features[0];
+    if (!geoData) {
+      req.flash("error", "Invalid location entered!");
+      return resp.redirect("/listings/new");
+    }
+
+    if (!req.file) {
+      req.flash("error", "Image upload failed!");
+      return resp.redirect("/listings/new");
+    }
+
+    const url = req.file.path;
+    const filename = req.file.filename;
+
+    const newData = new Listing(req.body.listing);
+    newData.owner = req.user._id;
+    newData.image = { url, filename };
+    newData.geometry = geoData.geometry;
+
+    const savedListing = await newData.save();
+    console.log(savedListing);
+
+    req.flash("success", "New Listing is Created!");
+    resp.redirect("/listings");
+  } catch (err) {
+    next(err); // important for error handling middleware
+  }
+};
+
 
 module.exports.showIndividualData = async (req,resp)=>{
     let {id} = req.params;
