@@ -1,18 +1,28 @@
 
   
-	mapboxgl.accessToken = map_token
+	mapboxgl.accessToken = mapToken;
+
+  console.log("Listing received from EJS:", listing);
+
+  const coordinates = listing.geometry.coordinates;
+  const title = listing.title;
+
     const map = new mapboxgl.Map({
-        container: 'map', // container ID
-        center:  listing.geometry.coordinates, // starting position [lng, lat]. Note that lat must be set between -90 and 90
-        zoom: 10 // starting zoom
+        container: 'map',
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: 'mapbox://styles/mapbox/standard',
+        center: coordinates,
+        zoom: 8
     });
 
-    console.log(coordinates);
+    // console.log(coordinates);
 
       const marker = new mapboxgl.Marker({ color: 'red'})
-        .setLngLat(listing.geometry.coordinates)
+        .setLngLat(coordinates)
+        .setPopup(  
+          new mapboxgl.Popup({offset: 25})
+          .setHTML(`<h4>${ title }</h4><p>Exact Location will be provided after booking!</p>`)
+        )
         .addTo(map);
 
-        // const marker = new mapboxgl.Marker({ color: 'black', rotation: 45 })
-        // .setLngLat(coordinates)
-        // .addTo(map);
+
