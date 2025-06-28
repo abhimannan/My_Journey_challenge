@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALl Listings</title>
+</head>
+<body>
+    <h2>All Listings</h2>
+    <br>
+    <% for(let listing of data){ %>
+    <div class="listings">
+        <p><%= listing.name %></p>
+        <p><%= listing.place %></p>
+        <p><%= listing.price %></p>
+        <a href="/listings/<%= listing._id %>"><button>View</button></a>
+    </div>
+    <% } %>
+</body>
+</html>
