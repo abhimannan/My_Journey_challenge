@@ -54,10 +54,6 @@ let sessionOptions = {
   }
 };
 
-app.get("/home",(req,resp)=>{
-    resp.send("Home Route");
-});
-
 app.use(session(sessionOptions));
 app.use(flash());
 
