@@ -19,20 +19,21 @@ let flash = require('connect-flash');
 let passport = require("passport");
 let LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
-
+const MongoStore = require('connect-mongo');
 
 // all routes
 let listingRouter = require("./routes/listing.js");
 let reviewRouter = require("./routes/review.js");
 let userRouter = require("./routes/user.js");
 
+let DB_URL = process.env.ATLASDB_URL;
 
 main().then((res)=>{
     console.log("DB Connected");
 }).catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/Wonderlust');
+  await mongoose.connect(DB_URL);
 }
 
 // Middlewares
@@ -43,8 +44,22 @@ app.use(express.json());
 app.use(methodOverride('_method'));
 app.engine('ejs', ejsmate);
 app.use(express.static(path.join(__dirname,"/public")));
+
+const store = MongoStore.create({
+    mongoUrl : DB_URL,
+    crypto : {
+        secret : process.env.SECRETE,
+    },
+    touchAfter : 24 * 36000,
+});
+
+store.on("error",()=>{
+    console.log("Error In Mongo Session Store" , err);
+})
+
 let sessionOptions = {
-  secret: 'keyboard cat',
+    store,
+  secret: process.env.SECRETE,
   resave: false,
   saveUninitialized: true,
   cookie : {
@@ -53,6 +68,8 @@ let sessionOptions = {
     httpOnly : true
   }
 };
+
+
 
 app.use(session(sessionOptions));
 app.use(flash());
